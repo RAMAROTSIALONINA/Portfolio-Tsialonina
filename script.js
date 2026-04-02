@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         portfolioData.projets.forEach(projet => {
             const card = document.createElement('div');
             card.className = 'project-card';
+            card.dataset.technologies = projet.technologies.join(',');
             card.innerHTML = `
                 <h3>${projet.titre}</h3>
                 <p>${projet.description}</p>
@@ -61,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             competencesContainer.appendChild(card);
 
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.id = `modal-${competence.id}`;
+            const competenceModal = document.createElement('div');
+            competenceModal.className = 'modal';
+            competenceModal.id = `modal-${competence.id}`;
             
             let detailsListHtml = '';
             if (Array.isArray(competence.details)) {
@@ -72,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 detailsListHtml = `<p>${competence.details}</p>`;
             }
 
-            modal.innerHTML = `
+            competenceModal.innerHTML = `
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
                     <h3>${competence.titre}</h3>
                     ${detailsListHtml}
                 </div>
             `;
-            modalsContainer.appendChild(modal);
+            modalsContainer.appendChild(competenceModal);
         });
 
         // --- Diplômes ---
@@ -96,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             diplomesContainer.appendChild(card);
 
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.id = `modal-${diplome.id}`;
+            const diplomeModal = document.createElement('div');
+            diplomeModal.className = 'modal';
+            diplomeModal.id = `modal-${diplome.id}`;
             
             let detailsListHtml = '';
             if (Array.isArray(diplome.details)) {
@@ -107,14 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 detailsListHtml = `<p>${diplome.details}</p>`;
             }
 
-            modal.innerHTML = `
+            diplomeModal.innerHTML = `
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
                     <h3>${diplome.titre}</h3>
                     ${detailsListHtml}
                 </div>
             `;
-            modalsContainer.appendChild(modal);
+            modalsContainer.appendChild(diplomeModal);
         });
 
         // --- Contact ---
@@ -202,6 +203,75 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => event.target.style.display = 'none', 300);
         }
     });
+
+    // 5. Gérer le filtre de projets
+    function initProjectFilter() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('#projets .project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                // Mettre à jour les boutons actifs
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filtrer les projets
+                projectCards.forEach(card => {
+                    const technologies = card.dataset.technologies.split(',');
+                    
+                    if (filter === 'all' || technologies.includes(filter)) {
+                        card.classList.remove('hidden');
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.add('hidden');
+                        card.classList.remove('visible');
+                    }
+                });
+            });
+        });
+    }
+
+    // Initialiser le filtre après la génération du contenu
+    initProjectFilter();
+
+    // 6. Gérer le thème clair/sombre
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+        
+        // Par défaut, le thème est clair
+        body.classList.add('light-theme');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        
+        // Vérifier le thème sauvegardé dans localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.remove('light-theme');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    // Initialiser le thème
+    initThemeToggle();
 
     // Fermer la modale avec la touche Échap
     document.addEventListener('keydown', (event) => {
