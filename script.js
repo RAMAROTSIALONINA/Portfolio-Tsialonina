@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── 6a. Projets ──────────────────────────────────────────── */
     function buildProjets() {
         const grid = document.getElementById('projets-grid');
+        if (!grid) return;
 
         portfolioData.projets.forEach((projet, idx) => {
             const mainTech = projet.technologies.find(t => projectIcons[t]) || 'default';
@@ -312,6 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── 6b. Compétences avec barres de progression ───────────── */
     function buildCompetences() {
         const grid = document.getElementById('competences-grid');
+        if (!grid) return;
 
         portfolioData.competences.forEach((comp, idx) => {
             const cfg  = skillIcons[comp.titre] || { icon: 'fas fa-star', accent: false };
@@ -448,6 +450,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── 6f. Diplômes (Timeline) ──────────────────────────────── */
     function buildDiplomes() {
         const timeline = document.getElementById('diplomes-timeline');
+        if (!timeline) return;
 
         portfolioData.diplomes.forEach((d) => {
             const item = document.createElement('div');
@@ -474,6 +477,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ── 6g. Contact ──────────────────────────────────────────── */
     function buildContact() {
         const grid = document.getElementById('contact-grid');
+        if (!grid) return;
 
         portfolioData.contact.forEach((item, idx) => {
             const card = document.createElement('a');
