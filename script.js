@@ -682,8 +682,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const body   = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
                 const mailto = `mailto:tsialoninajeanedouard@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.open(mailto);
-                showFeedback('✅ Votre client email va s\'ouvrir. Merci !', 'success');
                 form.reset();
+                showMailPopup(name);
             }
 
             submitBtn.disabled = false;
@@ -695,6 +695,34 @@ document.addEventListener('DOMContentLoaded', function () {
         feedback.textContent = msg;
         feedback.className   = `form-feedback ${type}`;
         setTimeout(() => { feedback.className = 'form-feedback'; feedback.textContent = ''; }, 6000);
+    }
+
+    function showMailPopup(senderName) {
+        /* Supprimer un éventuel popup déjà ouvert */
+        const existing = document.getElementById('mail-sent-popup');
+        if (existing) existing.remove();
+
+        const overlay = document.createElement('div');
+        overlay.id = 'mail-sent-popup';
+        overlay.innerHTML = `
+            <div class="mail-popup-box">
+                <div class="mail-popup-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>Message envoyé !</h3>
+                <p>Merci <strong>${senderName}</strong>, votre client email s'est ouvert avec votre message pré-rempli.</p>
+                <p class="mail-popup-sub">Cliquez sur <em>Envoyer</em> dans votre application email pour finaliser.</p>
+                <button class="mail-popup-close cta-button primary" onclick="document.getElementById('mail-sent-popup').remove()">
+                    <i class="fas fa-times"></i> Fermer
+                </button>
+            </div>`;
+        document.body.appendChild(overlay);
+
+        /* Fermer en cliquant sur le fond */
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) overlay.remove();
+        });
+
+        /* Fermer automatiquement après 8 secondes */
+        setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 8000);
     }
 
     /* ══════════════════════════════════════════════════════════════
