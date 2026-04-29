@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Tsialonina Jean Edouard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-light: #ecf0f1;
+            --bg-white: #ffffff;
+            --border-color: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .cv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .cv-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255,255,255,0.05);
+            transform: rotate(45deg);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .contact-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-sidebar-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .contact-sidebar-item i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .contact-info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .contact-value {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category-main {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .skill-category-title-main {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag-main {
+            background: linear-gradient(135deg, var(--bg-light), var(--secondary-color));
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .formation-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .formation-category {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .formation-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .formation-category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .formation-category-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .diploma-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .diploma-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .diploma-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .diploma-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .diploma-year-badge {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .diploma-main-info {
+            flex: 1;
+        }
+
+        .diploma-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .diploma-school {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .diploma-school i {
+            color: var(--accent-color);
+        }
+
+        .diploma-content {
+            padding-left: 115px;
+        }
+
+        .diploma-specialization {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .specialization-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .diploma-project {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .diploma-project i {
+            color: var(--secondary-color);
+        }
+
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .certification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .certification-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .certification-content {
+            flex: 1;
+        }
+
+        .certification-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .certification-period {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .certification-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .skills-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-group {
+            background: var(--bg-light);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .formation-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .formation-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .formation-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .formation-year {
+            min-width: 80px;
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .formation-details {
+            flex: 1;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Styles pour les graphiques */
+        .stat-chart-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .chart-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .circular-chart {
+            position: relative;
+            display: inline-block;
+        }
+
+        .chart-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+        }
+
+        .stats-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat-bar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .stat-bar-label {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .stat-bar-container {
+            position: relative;
+            height: 20px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 10px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .stat-bar-value {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2c3e50;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .dot-chart {
+            margin-top: 20px;
+        }
+
+        .dot-chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dot-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dot-label {
+            min-width: 70px;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .dot.filled {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-color: var(--secondary-color);
+        }
+
+        .dot-score {
+            min-width: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .personal-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .personal-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .personal-info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .personal-info-item i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .personal-info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .personal-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .personal-value {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .divers-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .divers-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, var(--bg-light), white);
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .divers-item:hover {
+            transform: translateX(3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .divers-item i {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .divers-item span {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .cv-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: var(--bg-light);
+            padding: 30px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .soft-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .soft-skill-item i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--secondary-color);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-year {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .diploma-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .diploma-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .diploma-year {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .diploma-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .diploma-school {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .diploma-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .cv-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-title {
+                font-size: 1.1rem;
+            }
+            
+            .skill-category-title {
+                font-size: 0.9rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cv-header {
+                padding: 20px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .sidebar {
+                padding: 20px;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .timeline-item {
+                padding: 15px;
+            }
+            
+            .project-item {
+                padding: 15px;
+            }
+            
+            .diploma-item {
+                padding: 15px;
+            }
+        }
+
+        @media print {
+            @page { size: A4 portrait; margin: 1.2cm 1.5cm; }
+
+            /* ── Masqués à l'impression ── */
+            .no-print,
+            .print-btn { display: none !important; }
+
+            /* ── Reset body ── */
+            body {
+                background: white;
+                padding: 0;
+                font-size: 8.5pt;
+                color: #1a1a1a;
+            }
+
+            /* ── Conteneur principal ── */
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+
+            /* ── Header compressé ── */
+            .cv-header {
+                padding: 14px 18px;
+                background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .profile-img  { width: 75px; height: 75px; }
+            .profile-info h1   { font-size: 14pt; margin-bottom: 4px; }
+            .profile-title     { font-size: 8.5pt; }
+            .profile-section   { gap: 16px; }
+
+            /* ── Layout 2 colonnes ── */
+            .cv-body { grid-template-columns: 1fr 2.2fr; }
+            .sidebar      { padding: 12px 14px; background: #f5f7fa !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .main-content { padding: 12px 16px; }
+
+            /* ── Sections ── */
+            .section { margin-bottom: 10px; }
+            .section-title {
+                font-size: 9pt;
+                margin-bottom: 6px;
+                padding-bottom: 4px;
+            }
+            .section-title::after { width: 30px; }
+
+            /* ── Contact sidebar ── */
+            .contact-sidebar     { gap: 5px; }
+            .contact-sidebar-item {
+                padding: 4px 6px;
+                box-shadow: none;
+                border-radius: 4px;
+                gap: 8px;
+            }
+            .contact-label { font-size: 6.5pt; }
+            .contact-value { font-size: 8pt; }
+            .contact-sidebar-item i { font-size: 0.85rem; }
+
+            /* ── Langues ── */
+            .language-item { padding: 4px 0; font-size: 8pt; }
+
+            /* ── Soft Skills ── */
+            .soft-skill-item { padding: 2px 0; font-size: 8pt; gap: 7px; }
+            .soft-skill-item i { font-size: 0.8rem; }
+
+            /* ── Infos personnelles ── */
+            .personal-info      { gap: 5px; }
+            .personal-info-item { padding: 4px 6px; box-shadow: none; gap: 8px; }
+            .personal-label     { font-size: 6.5pt; }
+            .personal-value     { font-size: 8pt; }
+
+            /* ── Divers ── */
+            .divers-info   { gap: 4px; }
+            .divers-item   { padding: 3px 7px; }
+            .divers-item span  { font-size: 8pt; }
+            .divers-item i     { font-size: 0.8rem; }
+
+            /* ── Timeline expériences ── */
+            .timeline { padding-left: 18px; }
+            .timeline-item {
+                padding: 8px 10px;
+                margin-bottom: 7px;
+                box-shadow: none;
+                border-radius: 6px;
+                page-break-inside: avoid;
+            }
+            .timeline-item::before { left: -23px; top: 14px; width: 9px; height: 9px; }
+            .timeline-date        { font-size: 7.5pt; margin-bottom: 2px; }
+            .timeline-title       { font-size: 9.5pt; margin-bottom: 2px; }
+            .timeline-company     { font-size: 8pt;   margin-bottom: 4px; }
+            .timeline-description { font-size: 8pt;   margin-bottom: 4px; }
+
+            /* ── Compétences ── */
+            .skills-simple { gap: 5px; }
+            .skill-group   { padding: 5px 10px; font-size: 8pt; border-radius: 4px; }
+
+            /* ── Projets ── */
+            .project-item {
+                padding: 7px 10px;
+                margin-bottom: 7px;
+                box-shadow: none;
+                border-radius: 6px;
+                page-break-inside: avoid;
+            }
+            .project-year        { font-size: 7.5pt; margin-bottom: 2px; }
+            .project-title       { font-size: 9.5pt; margin-bottom: 4px; }
+            .project-description { font-size: 8pt;   margin-bottom: 4px; }
+
+            /* ── Formation ── */
+            .formation-simple { gap: 6px; }
+            .formation-item {
+                padding: 6px 10px;
+                box-shadow: none;
+                border-radius: 4px;
+                page-break-inside: avoid;
+            }
+            .formation-year    { font-size: 7.5pt; min-width: 58px; }
+            .formation-details { font-size: 8pt; line-height: 1.4; }
+
+            /* ── Tags techniques ── */
+            .tech-tags { gap: 4px; margin-top: 4px; }
+            .tech-tag  { font-size: 7pt; padding: 2px 6px; border-radius: 10px; }
+
+            /* ── Suppression hover/transform ── */
+            .timeline-item:hover,
+            .project-item:hover,
+            .formation-item:hover,
+            .contact-sidebar-item:hover,
+            .personal-info-item:hover,
+            .divers-item:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            /* ── Contrôle des sauts de page ── */
+            .section { page-break-inside: avoid; }
+            header   { page-break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <header class="cv-header">
+            <div class="profile-section">
+                <img src="photo_profil.jpg" alt="Photo de profil" class="profile-img">
+                <div class="profile-info">
+                    <h1>
+                        <span style="display:block;font-size:2.5rem;font-weight:800;letter-spacing:1px">RAMAROTSIALONINA</span>
+                        <span style="display:block;font-size:1.6rem;font-weight:400;letter-spacing:2px;opacity:0.92">Tinasoa Jean Edouard</span>
+                    </h1>
+                    <div class="profile-title">Développeur Fullstack avec 3+ ans d'expérience, spécialisé en développement web et en intelligence artificielle, avec une formation en sciences cognitives.</div>
+                </div>
+            </div>
+        </header>
+
+        
+        <!-- Body -->
+        <div class="cv-body">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Contact -->
+                <section class="section">
+                    <h3 class="section-title">Contact</h3>
+                    <div class="contact-sidebar">
+                        <div class="contact-sidebar-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">tsialoninajeanedouard@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-sidebar-item">
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">Téléphone</span>
+                                <span class="contact-value">+261 34 65 034 54</span>
+                            </div>
+                        </div>
+                        <div class="contact-sidebar-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">WhatsApp</span>
+                                <span class="contact-value">+261 33 19 333 90</span>
+                            </div>
+                        </div>
+                        <a class="contact-sidebar-item" href="https://www.linkedin.com/in/TsialoninaJeanEdouard" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                            <i class="fab fa-linkedin"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">Tsialonina Jean Edouard</span>
+                            </div>
+                        </a>
+                        <a class="contact-sidebar-item" href="https://github.com/RAMAROTSIALONINA" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                            <i class="fab fa-github"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">github.com/RAMAROTSIALONINA</span>
+                            </div>
+                        </a>
+                        <a class="contact-sidebar-item" href="https://ramarotsialonina.github.io/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                            <i class="fas fa-globe"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">Portfolio</span>
+                                <span class="contact-value">ramarotsialonina.github.io</span>
+                            </div>
+                        </a>
+                        <div class="contact-sidebar-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-info-text">
+                                <span class="contact-label">Localisation</span>
+                                <span class="contact-value">Ambohimanatrika, Tanjombato</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Langues -->
+                <section class="section">
+                    <h3 class="section-title">Langues</h3>
+                    <div class="language-item">
+                        <span>Malgache</span>
+                        <span>Langue maternelle</span>
+                    </div>
+                    <div class="language-item">
+                        <span>Français</span>
+                        <span>Courant — C1</span>
+                    </div>
+                    <div class="language-item">
+                        <span>Anglais</span>
+                        <span>Technique — B1</span>
+                    </div>
+                </section>
+
+                <!-- Soft Skills -->
+                <section class="section">
+                    <h3 class="section-title">Soft Skills</h3>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Rigueur & Précision</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-users"></i>
+                        <span>Travail en équipe</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Adaptabilité</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Résolution de problèmes</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-comments"></i>
+                        <span>Communication</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Autonomie</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Créativité</span>
+                    </div>
+                    <div class="soft-skill-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Gestion du temps</span>
+                    </div>
+                </section>
+
+                <!-- Informations Personnelles -->
+                <section class="section">
+                    <h3 class="section-title">Informations Personnelles</h3>
+                    <div class="personal-info">
+                        <div class="personal-info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div class="personal-info-text">
+                                <span class="personal-label">Date de naissance</span>
+                                <span class="personal-value">15 Mai 1999</span>
+                            </div>
+                        </div>
+                        <div class="personal-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="personal-info-text">
+                                <span class="personal-label">Lieu de naissance</span>
+                                <span class="personal-value">Miarinavaratra</span>
+                            </div>
+                        </div>
+                        <div class="personal-info-item">
+                            <i class="fas fa-heart"></i>
+                            <div class="personal-info-text">
+                                <span class="personal-label">Situation matrimoniale</span>
+                                <span class="personal-value">Marié</span>
+                            </div>
+                        </div>
+                        <div class="personal-info-item">
+                            <i class="fas fa-flag"></i>
+                            <div class="personal-info-text">
+                                <span class="personal-label">Nationalité</span>
+                                <span class="personal-value">Malagasy</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Divers -->
+                <section class="section">
+                    <h3 class="section-title">Divers</h3>
+                    <div class="divers-info">
+                        <div class="divers-item">
+                            <i class="fas fa-music"></i>
+                            <span>Danse</span>
+                        </div>
+                        <div class="divers-item">
+                            <i class="fas fa-language"></i>
+                            <span>Club des langues</span>
+                        </div>
+                        <div class="divers-item">
+                            <i class="fas fa-microphone"></i>
+                            <span>Chant</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Statistiques -->
+                <section class="section no-print">
+                    <h3 class="section-title">Statistiques</h3>
+                    
+                    <!-- Graphique circulaire - Taux détection IA -->
+                    <div class="stat-chart-container">
+                        <div class="chart-title">Taux détection IA</div>
+                        <div class="circular-chart">
+                            <div class="chart-percentage">95%</div>
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring-circle" stroke="#e0e0e0" stroke-width="6" fill="transparent" r="35" cx="40" cy="40"/>
+                                <circle class="progress-ring-circle progress" stroke="#3498db" stroke-width="6" fill="transparent" r="35" cx="40" cy="40" style="stroke-dasharray: 220; stroke-dashoffset: 11;"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Barres de progression -->
+                    <div class="stats-bars">
+                        <div class="stat-bar-item">
+                            <div class="stat-bar-label">Projets réalisés</div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar-fill" style="width: 70%"></div>
+                                <div class="stat-bar-value">7+</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-bar-item">
+                            <div class="stat-bar-label">Ans d'expérience</div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar-fill" style="width: 30%"></div>
+                                <div class="stat-bar-value">3+</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-bar-item">
+                            <div class="stat-bar-label">Technologies maîtrisées</div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar-fill" style="width: 75%"></div>
+                                <div class="stat-bar-value">15+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graphique à points - Répartition des compétences -->
+                    <div class="dot-chart">
+                        <div class="chart-title">Répartition des compétences</div>
+                        <div class="dot-chart-container">
+                            <div class="dot-row">
+                                <div class="dot-label">Frontend</div>
+                                <div class="dots">
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="dot-score">4/5</div>
+                            </div>
+                            <div class="dot-row">
+                                <div class="dot-label">Backend</div>
+                                <div class="dots">
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="dot-score">4/5</div>
+                            </div>
+                            <div class="dot-row">
+                                <div class="dot-label">IA & Data</div>
+                                <div class="dots">
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot filled"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="dot-score">3/5</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+
+                <!-- Expériences Professionnelles -->
+                <section class="section">
+                    <h3 class="section-title">Expériences Professionnelles</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-title">Développeur Fullstack</div>
+                            <div class="timeline-company">Bourbon Morelli — Plateforme E-Commerce Luxe</div>
+                            <div class="timeline-description">
+                                Développement d'une plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'élégance française.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-title">Développeur Fullstack — Plateforme TELEX</div>
+                            <div class="timeline-company">TELEX — Télévision Étudiante</div>
+                            <div class="timeline-description">
+                                Développement complet de la plateforme web de la chaîne de télévision étudiante TELEX, désormais en ligne sur telex.mg.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">EJS</span>
+                                <span class="tech-tag">SQLite3</span>
+                                <span class="tech-tag">Bootstrap 5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 — 2024</div>
+                            <div class="timeline-title">Développeur Logiciel</div>
+                            <div class="timeline-company">Swiss Madagascar (Toutadom)</div>
+                            <div class="timeline-description">
+                                Développement complet d'un logiciel de gestion de véhicules pour la société Toutadom au sein de Swiss Madagascar.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-title">Développeur Web Fullstack</div>
+                            <div class="timeline-company">EGRIE</div>
+                            <div class="timeline-description">
+                                Conception et développement du site web officiel de l'établissement EGRIE avec PHP et le framework CodeIgniter 3.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">CodeIgniter 3</span>
+                                <span class="tech-tag">SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Compétences Techniques -->
+                <section class="section">
+                    <h3 class="section-title">Compétences Techniques</h3>
+                    
+                    <div class="skills-simple">
+                        <div class="skill-group">
+                            <strong>Frontend:</strong> JavaScript, React, HTML5/CSS3, Bootstrap
+                        </div>
+                        <div class="skill-group">
+                            <strong>Backend:</strong> Python, Node.js, Java, PHP, Express.js
+                        </div>
+                        <div class="skill-group">
+                            <strong>Bases de données:</strong> MySQL, PostgreSQL, SQLite, SQL
+                        </div>
+                        <div class="skill-group">
+                            <strong>IA & Data Science:</strong> Pandas, NumPy, Machine Learning
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projets Académiques & Personnels -->
+                <section class="section">
+                    <h3 class="section-title">Projets Académiques & Personnels</h3>
+
+                    <div class="project-item">
+                        <div class="project-year">2024</div>
+                        <div class="project-title">Détecteur de fichiers IA</div>
+                        <div class="project-description">
+                            Logiciel de détection de documents malveillants basé sur l'intelligence artificielle. Taux de détection de 95% sur les données de test.
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">IA / ML</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-year">2024</div>
+                        <div class="project-title">Projet sur l'Intelligence Artificielle</div>
+                        <div class="project-description">
+                            Exploration de l'IA et des réseaux de neurones : modèles prédictifs, ACP, AFC. Réalisé avec Python et Anaconda.
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Anaconda</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-year">2023</div>
+                        <div class="project-title">Gestion d'établissement en Java</div>
+                        <div class="project-description">
+                            Projet de fin d'études (Licence). Application desktop complète de gestion des étudiants, enseignants, notes, absences et emplois du temps. Interface graphique réalisée en JavaFX, logique métier en Java pur, données stockées dans MySQL.
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">JavaFX</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Formation -->
+                <section class="section">
+                    <h3 class="section-title">Formation</h3>
+
+                    <div class="formation-simple">
+                        <div class="formation-item">
+                            <div class="formation-year">2023-2024</div>
+                            <div class="formation-details">
+                                <strong>Master II en Ingénierie</strong> — ISA (Ingénierie de Système Avancé)<br>
+                                Parcours : Ingénierie en Sciences Cognitives<br>
+                                <span style="color:var(--secondary-color)">Polytechnique d'Antananarivo</span>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-year">2022-2023</div>
+                            <div class="formation-details">
+                                <strong>Licence Professionnelle en Génie Logiciel</strong><br>
+                                Parcours : Génie Logiciel — Projet : Gestion d'établissement public<br>
+                                <span style="color:var(--secondary-color)">Université d'Amoron'i Mania</span>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-year">2022-2023</div>
+                            <div class="formation-details">
+                                <strong>Formation certifiante — Initiation à l'IoT</strong><br>
+                                Programmation de microcontrôleurs, communication entre appareils connectés
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-year">2021-2022</div>
+                            <div class="formation-details">
+                                <strong>Formation certifiante — Arduino</strong><br>
+                                Prototypes électroniques, programmation capteurs et actionneurs
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-year">2018-2019</div>
+                            <div class="formation-details">
+                                <strong>Baccalauréat série D</strong> — Sciences Expérimentales<br>
+                                <span style="color:var(--secondary-color)">Lycée Générale d'Ambadiki Manangana</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Animation des barres de progression au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        });
+
+        // Fonction d'impression
+        function printCV() {
+            window.print();
+        }
+
+        // Ajout d'un bouton d'impression (optionnel)
+        document.addEventListener('DOMContentLoaded', function() {
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '<i class="fas fa-print"></i> Imprimer le CV';
+            printBtn.className = 'btn btn-primary position-fixed print-btn';
+            printBtn.style.cssText = 'top: 20px; right: 20px; z-index: 1000;';
+            printBtn.onclick = printCV;
+            document.body.appendChild(printBtn);
+        });
+    </script>
+</body>
+</html>

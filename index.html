@@ -3,43 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de RAMAROTSIALONINA Tinasoa Jean Edouard, développeur fullstack spécialisé en Python, Java, IA et développement web à Antananarivo. Projets en gestion de véhicules, IA, systèmes d'information et applications web.">
-    <meta name="keywords" content="développeur fullstack, Python, Java, intelligence artificielle, développement web, portfolio, Antananarivo, Madagascar, ingénieur logiciel, IA, machine learning">
+    <meta name="description" content="Portfolio de RAMAROTSIALONINA Tinasoa Jean Edouard, développeur fullstack spécialisé en Python, Java, IA et développement web à Antananarivo, Madagascar.">
+    <meta name="keywords" content="développeur fullstack, Python, Java, intelligence artificielle, développement web, portfolio, Antananarivo, Madagascar, Node.js, React">
     <meta name="author" content="RAMAROTSIALONINA Tinasoa Jean Edouard">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="RAMAROTSIALONINA - Développeur Fullstack & IA">
-    <meta property="og:description" content="Développeur fullstack spécialisé en Python, Java et IA. Découvrez mes projets et compétences en développement logiciel.">
+    <meta name="theme-color" content="#0ea5e9">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ramarotsialonina.github.io/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RAMAROTSIALONINA Tinasoa — Développeur Fullstack & IA">
+    <meta property="og:description" content="Développeur fullstack spécialisé en Python, Java et IA. Découvrez mes projets, compétences et expériences.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="photo_profil.png">
+    <meta property="og:url" content="https://ramarotsialonina.github.io/">
+    <meta property="og:image" content="https://ramarotsialonina.github.io/photo_profil.jpg">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RAMAROTSIALONINA - Développeur Fullstack">
+    <meta name="twitter:title" content="RAMAROTSIALONINA — Développeur Fullstack & IA">
     <meta name="twitter:description" content="Portfolio de développeur spécialisé en Python, Java et intelligence artificielle.">
-    <meta name="twitter:image" content="photo_profil.png">
-    <title>RAMAROTSIALONINA - Développeur Fullstack & IA | Portfolio</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <meta name="twitter:image" content="https://ramarotsialonina.github.io/photo_profil.jpg">
+
+    <title>RAMAROTSIALONINA Tinasoa — Développeur Fullstack & IA | Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230ea5e9'/><text y='.85em' font-size='62' text-anchor='middle' x='50' fill='white' font-family='sans-serif' font-weight='800'>RT</text></svg>">
+
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.2 (stable) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          referrerpolicy="no-referrer">
+
+    <!-- EmailJS : charger uniquement si les cles sont configurees dans script.js -->
+    <!-- <script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js" defer></script> -->
+
+    <!-- JSON-LD — Données structurées Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "RAMAROTSIALONINA Tinasoa Jean Edouard",
+      "jobTitle": "Développeur Fullstack & Ingénieur IA",
+      "email": "tsialoninajeanedouard@gmail.com",
+      "telephone": "+261346503454",
+      "url": "https://ramarotsialonina.github.io/",
+      "image": "https://ramarotsialonina.github.io/photo_profil.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tanjombato, Antananarivo",
+        "addressCountry": "MG"
+      },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Polytechnique d'Antananarivo" },
+        { "@type": "CollegeOrUniversity", "name": "ISTA Ambositra" }
+      ],
+      "knowsAbout": ["Python", "Java", "JavaScript", "Node.js", "React", "Intelligence Artificielle", "PostgreSQL", "MySQL"],
+      "sameAs": [
+        "https://github.com/RAMAROTSIALONINA",
+        "https://www.linkedin.com/in/TsialoninaJeanEdouard"
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- ─── Écran de bienvenue ─────────────────────────────────── -->
     <div id="welcome-message">
-        <h1>Bonjour !</h1>
-        <p>Bienvenue sur mon portfolio de Tsialonina !</p>
+        <h1>Bienvenue 👋</h1>
+        <p>Portfolio de RAMAROTSIALONINA Tinasoa Jean Edouard</p>
     </div>
 
+    <!-- ─── Contenu principal ─────────────────────────────────── -->
     <div id="portfolio-content" class="hidden">
+
         <header role="banner">
             <div class="header-left">
-                <p class="name">RAMAROTSIALONINA Tinasoa Jean Edouard</p>
+                <p class="name">
+                    <span class="name-full">RAMAROTSIALONINA Tinasoa Jean Edouard</span>
+                    <span class="name-short">RAMAROTSIALONINA T.</span>
+                </p>
             </div>
             <div class="header-right">
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer le thème">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
-                <nav role="navigation" aria-label="Navigation principale">
-                    <a href="#accueil" class="active" aria-current="page">Accueil</a>
+                <!-- Bouton hamburger (mobile/tablette) -->
+                <button id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <nav id="main-nav" role="navigation" aria-label="Navigation principale">
+                    <a href="#accueil"     class="active" aria-current="page">Accueil</a>
                     <a href="#competences">Compétences</a>
+                    <a href="#experiences">Expériences</a>
                     <a href="#projets">Projets</a>
                     <a href="#diplomes">Diplômes</a>
                     <a href="#contact">Contact</a>
@@ -48,30 +111,133 @@
         </header>
 
         <main role="main">
+
+            <!-- ─── Accueil / Hero ─────────────────────────── -->
             <section id="accueil" class="content-section active" aria-labelledby="accueil-title">
                 <h2 id="accueil-title" class="visually-hidden">Accueil</h2>
-                <div class="accueil-header">
-                    <img src="photo_profil.png" alt="Photo de RAMAROTSIALONINA Tinasoa Jean Edouard" class="profile-pic">
-                </div>
-                <div class="profile-text">
-                    <p class="animated-p">
-                        Passionné par le numérique, je développe des logiciels et conçois des systèmes adaptés aux besoins des entreprises. Rigoureux et orienté résultats, j'accompagne les organisations dans leur transformation digitale en créant des solutions fiables, performantes et évolutives.
-                    </p>
-                </div>
-                <div class="buttons-container">
-                    <a href="mon_cv.pdf" class="cta-button primary" target="_blank">Voir mon CV</a>
-                    <a href="#contact" class="cta-button secondary">Contactez-moi</a>
+
+                <div class="hero-inner">
+                    <!-- Disponibilité -->
+                    <div class="availability-badge reveal">
+                        <span class="avail-dot"></span>
+                        Disponible pour un poste ou une mission
+                    </div>
+
+                    <!-- Photo de profil -->
+                    <div class="profile-pic-wrapper reveal">
+                        <img src="photo_profil.jpg"
+                             alt="Photo de RAMAROTSIALONINA Tinasoa Jean Edouard"
+                             class="profile-pic"
+                             width="160" height="160"
+                             loading="eager"
+                             decoding="async">
+                        <span class="hero-status" title="Disponible"></span>
+                    </div>
+
+                    <!-- Nom -->
+                    <h1 class="hero-name reveal">Tsialonina</h1>
+
+                    <!-- Rôle animé -->
+                    <div class="hero-role reveal">
+                        <span id="typed-text" class="typed-text"></span><span class="cursor">|</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="profile-text reveal">
+                        <p class="animated-p">
+                            Passionné par le numérique, je développe des logiciels et conçois des systèmes
+                            adaptés aux besoins des entreprises. Rigoureux et orienté résultats, j'accompagne
+                            les organisations dans leur transformation digitale en créant des solutions
+                            <strong>fiables, performantes et évolutives</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Informations personnelles -->
+                    <div class="personal-info-card reveal">
+                        <div class="personal-info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                                <span class="pi-label">Date de naissance</span>
+                                <span class="pi-value">15 Mai 1999</span>
+                            </div>
+                        </div>
+                        <div class="personal-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="pi-label">Lieu de naissance</span>
+                                <span class="pi-value">Miarinavaratra / Fandriana</span>
+                            </div>
+                        </div>
+                        <div class="personal-info-item">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <span class="pi-label">Adresse actuelle</span>
+                                <span class="pi-value">Ambohimanatrika, Tanjombato</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liens sociaux -->
+                    <div class="hero-social reveal">
+                        <a href="https://github.com/RAMAROTSIALONINA" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/TsialoninaJeanEdouard" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:tsialoninajeanedouard@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/261346503454" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+
+                    <!-- Boutons CTA -->
+                    <div class="buttons-container reveal">
+                        <a href="CV_Professionnel.html" class="cta-button primary" target="_blank">
+                            <i class="fas fa-file-download"></i> Télécharger mon CV
+                        </a>
+                        <a href="#contact" class="cta-button secondary">
+                            <i class="fas fa-paper-plane"></i> Me contacter
+                        </a>
+                    </div>
+
+                    <!-- Statistiques animées -->
+                    <div class="stats-row reveal" id="stats-row"></div>
                 </div>
             </section>
 
+            <!-- ─── Compétences ────────────────────────────── -->
             <section id="competences" class="content-section" aria-labelledby="competences-title">
                 <h2 id="competences-title">Mes Compétences 🛠️</h2>
-                <div class="projects-grid">
-                    </div>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Technologies, langues et qualités personnelles</p>
+
+                <div class="projects-grid" id="competences-grid"></div>
+
+                <!-- Langues -->
+                <h3 class="subsection-title reveal">🌍 Langues parlées</h3>
+                <div class="langues-grid" id="langues-grid"></div>
+
+                <!-- Soft Skills -->
+                <h3 class="subsection-title reveal">🤝 Soft Skills</h3>
+                <div class="softskills-grid" id="softskills-grid"></div>
             </section>
 
+            <!-- ─── Expériences ────────────────────────────── -->
+            <section id="experiences" class="content-section" aria-labelledby="experiences-title">
+                <h2 id="experiences-title">Expériences Professionnelles 💼</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Mes missions et projets en entreprise</p>
+                <div class="timeline" id="experiences-timeline"></div>
+            </section>
+
+            <!-- ─── Projets ────────────────────────────────── -->
             <section id="projets" class="content-section" aria-labelledby="projets-title">
-                <h2 id="projets-title">Mes projets effectués 💻</h2>
+                <h2 id="projets-title">Mes Projets 💻</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Réalisations professionnelles et académiques</p>
                 <div class="filter-container">
                     <button class="filter-btn active" data-filter="all">Tous</button>
                     <button class="filter-btn" data-filter="Python">Python</button>
@@ -79,34 +245,81 @@
                     <button class="filter-btn" data-filter="PHP">PHP</button>
                     <button class="filter-btn" data-filter="Node.js">Node.js</button>
                     <button class="filter-btn" data-filter="IA">IA</button>
+                    <button class="filter-btn" data-filter="React">React</button>
                 </div>
-                <div class="projects-grid">
-                    </div>
+                <div class="projects-grid" id="projets-grid"></div>
             </section>
 
+            <!-- ─── Diplômes ───────────────────────────────── -->
             <section id="diplomes" class="content-section" aria-labelledby="diplomes-title">
-                <h2 id="diplomes-title">Diplômes et Formations 🎓</h2>
-                <div class="projects-grid">
-                    </div>
-                <p class="diploma-thanks">Merci d'avoir consulté mon CV. Si vous êtes intéressé(e), n'hésitez pas à me contacter directement !</p>
+                <h2 id="diplomes-title">Diplômes & Formations 🎓</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Mon parcours académique et mes certifications</p>
+                <div class="timeline" id="diplomes-timeline"></div>
+                <p class="diploma-thanks">
+                    Merci d'avoir consulté mon parcours. N'hésitez pas à me contacter si vous souhaitez en savoir plus !
+                </p>
             </section>
 
+            <!-- ─── Contact ────────────────────────────────── -->
             <section id="contact" class="content-section" aria-labelledby="contact-title">
                 <h2 id="contact-title">Contactez-moi 📞</h2>
-                <div class="contact-grid" id="contact-grid">
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Disponible pour toute opportunité ou collaboration</p>
+
+                <!-- Formulaire de contact -->
+                <form id="contact-form" class="contact-form reveal" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-name"><i class="fas fa-user"></i> Nom complet</label>
+                            <input type="text" id="form-name" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="form-email" placeholder="votre@email.com" required>
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="form-subject"><i class="fas fa-tag"></i> Sujet</label>
+                        <input type="text" id="form-subject" placeholder="Objet de votre message" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message"><i class="fas fa-comment-alt"></i> Message</label>
+                        <textarea id="form-message" rows="5" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <div id="form-feedback" class="form-feedback"></div>
+                    <button type="submit" class="cta-button primary form-submit-btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer le message
+                    </button>
+                </form>
+
+                <!-- Cartes de contact -->
+                <h3 class="subsection-title reveal" style="margin-top:48px">Ou retrouvez-moi sur</h3>
+                <div class="contact-grid" id="contact-grid"></div>
             </section>
+
         </main>
 
         <footer>
-            <p>&copy; 2025 RAMAROTSIALONINA Tinasoa Jean Edouard. Tous droits réservés.</p>
+            <p>&copy; <span id="footer-year"></span> <span>RAMAROTSIALONINA Tinasoa Jean Edouard</span>. Tous droits réservés.</p>
         </footer>
     </div>
 
+    <!-- Conteneur des modales -->
     <div id="modals-container"></div>
 
+    <!-- Barre de progression de lecture -->
+    <div id="scroll-progress" role="progressbar" aria-label="Progression de lecture"></div>
 
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <!-- Curseur personnalisé -->
+    <div id="custom-cursor"></div>
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="data.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
