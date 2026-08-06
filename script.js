@@ -273,10 +273,9 @@ document.addEventListener('DOMContentLoaded', function () {
             grid.appendChild(card);
 
             /* Contenu modale */
-            let modalBody = '';
+            let modalBody = `<p style="margin-bottom:10px">${projet.details}</p>`;
             if (projet.stack) {
                 modalBody += `
-                    <p style="margin-bottom:10px">${projet.details}</p>
                     <div class="modal-section-title"><i class="fas fa-layer-group" style="color:var(--primary);margin-right:6px"></i>Stack technique</div>
                     <table class="modal-table"><thead><tr><th>Couche</th><th>Technologie</th><th>Usage</th></tr></thead>
                     <tbody>${projet.stack.map(s => `<tr><td><strong>${s.couche}</strong></td><td>${s.techno}</td><td>${s.usage}</td></tr>`).join('')}</tbody></table>`;
@@ -287,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <table class="modal-table"><thead><tr><th>Catégorie</th><th>Fonctionnalités principales</th></tr></thead>
                     <tbody>${projet.fonctionnalites.map(f => `<tr><td><strong>${f.categorie}</strong></td><td>${f.items}</td></tr>`).join('')}</tbody></table>`;
             }
-            if (!projet.stack) modalBody = `<p>${projet.details}</p>`;
 
             const urlBtnModal = projet.url
                 ? `<a class="details-button live-btn" href="${projet.url}" target="_blank" rel="noopener noreferrer" style="margin-top:18px;display:inline-flex;align-items:center">

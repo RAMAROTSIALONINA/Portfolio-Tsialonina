@@ -64,7 +64,8 @@ const portfolioData = {
         {
             id: "projet-7",
             titre: "Bourbon Morelli — Plateforme E-Commerce Luxe",
-            description: "Plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'elegance francaise realisee en 2026. Confection sur mesure, design Made in Madagascar et experience utilisateur premium.",
+            url: "https://bourbonmorelli.com/",
+            description: "Plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'elegance francaise realisee en 2026, en ligne sur bourbonmorelli.com. Confection sur mesure, design Made in Madagascar et experience utilisateur premium.",
             technologies: ["React", "JavaScript", "Node.js", "Express.js", "MySQL", "TailwindCSS", "JWT", "Webpack"],
             stack: [
                 { couche: "Frontend", techno: "React + JavaScript", usage: "Interface utilisateur" },
@@ -83,6 +84,46 @@ const portfolioData = {
                 { categorie: "Support",    items: "Contact, FAQ, Documentation" }
             ],
             details: "Plateforme e-commerce premium Bourbon Morelli alliant artisanat malgache et elegance francaise. Fonctionnalites : confection sur mesure, options de personnalisation produits, interface haut de gamme, service client premium. Stack technique : React + Node.js/Express (API REST), MySQL, TailwindCSS, authentification JWT, build optimise via Webpack."
+        },
+        {
+            id: "projet-8",
+            titre: "SGCI — Systeme de Gestion et Controle Integre",
+            description: "Plateforme de digitalisation de la chaine d'approvisionnement pour la restauration multi-sites (Antananarivo) realisee en 2026 : inventaires par seuil, stocks centraux, validation financiere et audit, sur une architecture modulaire NestJS + Prisma + PostgreSQL.",
+            technologies: ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "BullMQ", "Redis", "React", "Vite"],
+            stack: [
+                { couche: "Backend",          techno: "NestJS + TypeScript",     usage: "API modulaire et logique metier" },
+                { couche: "ORM",              techno: "Prisma",                  usage: "Modelisation et migrations de schema" },
+                { couche: "Base de donnees",  techno: "PostgreSQL 17",           usage: "Stockage transactionnel (montants en Decimal)" },
+                { couche: "Files d'attente",  techno: "BullMQ + Redis",          usage: "Traitements asynchrones et taches de fond" },
+                { couche: "Frontend",         techno: "React + Vite",            usage: "Interface d'administration et operationnelle" },
+                { couche: "Securite",         techno: "RBAC (roles/permissions)",usage: "Authentification et gestion fine des droits" },
+                { couche: "Tracabilite",      techno: "audit_log immuable",      usage: "Journal d'audit en ecriture seule, soft delete" }
+            ],
+            fonctionnalites: [
+                { categorie: "Approvisionnement", items: "Inventaire multi-sites STOCK / SEUIL / APPRO, reapprovisionnement par seuil (APPRO = SEUIL - STOCK), alertes de rupture" },
+                { categorie: "Sites",             items: "Inventaires, pertes et receptions par site (Isoraka, Bypass, C2A, Ivato)" },
+                { categorie: "Stocks centraux",   items: "Module C2A : gestion des stocks centraux, ruptures et generation des BILL" },
+                { categorie: "Fiche Technique",   items: "Referentiel produits, coefficients de marge, departements et rayons/fournisseurs" },
+                { categorie: "Finance (UBS)",     items: "Validation budgetaire, tresorerie et comptabilite en Decimal (aucun flottant)" },
+                { categorie: "Controle (ACR)",    items: "Controle, audit et tracabilite complete via journal immuable" },
+                { categorie: "Socle",             items: "Utilisateurs, roles, permissions, notifications et securite transverse" }
+            ],
+            details: "SGCI (Systeme de Gestion et Controle Integre) digitalise la chaine d'approvisionnement d'une restauration multi-sites a Antananarivo : consommation des sites, stocks centraux, validation financiere et controle. L'architecture repose sur NestJS + TypeScript (API modulaire), Prisma comme ORM, PostgreSQL 17, ainsi que BullMQ + Redis pour les traitements asynchrones ; l'interface est developpee en React + Vite. Le coeur metier est un reapprovisionnement par seuil (APPRO = SEUIL - STOCK) consolide sur plusieurs sites, complete par des modules de comptabilite et d'audit. Trois regles non negociables structurent le systeme : montants en Decimal (jamais de flottant), journal d'audit immuable, et aucune suppression physique (soft delete par contrepassation)."
+        },
+        {
+            id: "projet-9",
+            titre: "ACTIPASS — Plateforme de Certification & Verification",
+            description: "Infrastructure nationale de confiance pour la digitalisation, la verification et la certification securisee des informations academiques, administratives et professionnelles (lutte contre la fraude documentaire). Intervention en tant que CTO : direction technique, conception, documentation et architecture fonctionnelle. Developpement realise par l'equipe Pulse, hebergement assure par Stellarix.",
+            technologies: ["Direction technique", "UI/UX", "Architecture fonctionnelle", "Diagrammes de flux", "Documentation (MOA/MVP)"],
+            fonctionnalites: [
+                { categorie: "Certification", items: "Digitalisation, verification et certification des diplomes et documents administratifs et professionnels" },
+                { categorie: "Anti-fraude",   items: "Preuve d'integrite par blockchain, verification par QR code, chiffrement des donnees sensibles" },
+                { categorie: "B2C",           items: "Passeport professionnel numerique pour professionnels et etudiants" },
+                { categorie: "B2B / B2G",     items: "Verification pour entreprises, banques, ambassades, universites et administrations" },
+                { categorie: "Gouvernance",   items: "Conformite RGPD, registre des traitements, separation donnees sensibles / publiques" },
+                { categorie: "Scaling",       items: "Architecture concue des le MVP pour l'expansion nationale puis africaine et internationale" }
+            ],
+            details: "ACTIPASS est une infrastructure nationale de confiance dediee a la digitalisation, la verification, la certification et la securisation des informations academiques, administratives et professionnelles. Elle repond a la multiplication des fraudes documentaires par un systeme centralise et fiable, selon un modele a double entree B2C (professionnels, etudiants) et B2B/B2G (entreprises, banques, ambassades, institutions). En tant que CTO, responsable de la direction technique et de la conception : definition de la vision technique, documentation fonctionnelle et technique (MOA, MVP, cahier des charges), maquettes UI/UX, diagrammes de flux et architecture fonctionnelle, et participation aux choix techniques et aux orientations technologiques. Le developpement de la plateforme a ete realise par l'equipe Pulse et l'hebergement est assure par Stellarix."
         }
     ],
     competences: [
@@ -90,8 +131,8 @@ const portfolioData = {
             id: "competence-1",
             titre: "Langages de programmation",
             details: [
-                { label: "Front-end", value: "HTML5, CSS3, JavaScript, React, Bootstrap" },
-                { label: "Back-end",  value: "Java, Python, C++, PHP, Node.js, Express.js" }
+                { label: "Front-end", value: "HTML5, CSS3, JavaScript, TypeScript, React, Bootstrap" },
+                { label: "Back-end",  value: "Java, Python, C++, PHP, Node.js, Express.js, NestJS" }
             ],
             niveaux: [
                 { nom: "Python",     pct: 90 },
@@ -101,14 +142,16 @@ const portfolioData = {
                 { nom: "PHP",        pct: 72 },
                 { nom: "C++",        pct: 60 }
             ],
-            tags: ["Java", "Python", "C++", "PHP", "HTML5", "CSS3", "JavaScript", "React", "Bootstrap", "Node.js", "Express.js"]
+            tags: ["Java", "Python", "C++", "PHP", "TypeScript", "HTML5", "CSS3", "JavaScript", "React", "Bootstrap", "Node.js", "Express.js", "NestJS"]
         },
         {
             id: "competence-2",
             titre: "Bases de donnees",
             details: [
                 { label: "Langage", value: "SQL" },
-                { label: "Types",   value: "MySQL, PostgreSQL, SQLite" }
+                { label: "Types",   value: "MySQL, PostgreSQL, SQLite" },
+                { label: "ORM",     value: "Prisma" },
+                { label: "Cache",   value: "Redis" }
             ],
             niveaux: [
                 { nom: "SQL",        pct: 85 },
@@ -116,7 +159,7 @@ const portfolioData = {
                 { nom: "PostgreSQL", pct: 78 },
                 { nom: "SQLite",     pct: 75 }
             ],
-            tags: ["SQL", "MySQL", "PostgreSQL", "SQLite"]
+            tags: ["SQL", "MySQL", "PostgreSQL", "SQLite", "Prisma", "Redis"]
         },
         {
             id: "competence-3",
@@ -137,14 +180,15 @@ const portfolioData = {
             id: "competence-4",
             titre: "Outils & Divers",
             details: [
-                { label: "Competences", value: "Calcul Stochastique (R), Operateur de saisie, Conception graphique (Photoshop), OCR, Maintenance informatique" }
+                { label: "Competences",    value: "Calcul Stochastique (R), Operateur de saisie, Conception graphique (Photoshop), OCR, Maintenance informatique" },
+                { label: "Build & Outils", value: "Vite, BullMQ" }
             ],
             niveaux: [
                 { nom: "Photoshop", pct: 70 },
                 { nom: "OCR",       pct: 68 },
                 { nom: "R (Stats)", pct: 62 }
             ],
-            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique"]
+            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ"]
         }
     ],
     experiences: [
@@ -212,6 +256,41 @@ const portfolioData = {
                 "Integration d'un systeme de paiement securise",
                 "Optimisation de l'experience utilisateur mobile-first"
             ]
+        },
+        {
+            id: "exp-5",
+            poste: "Developpeur Fullstack — SGCI",
+            entreprise: "SGCI — Systeme de Gestion et Controle Integre",
+            periode: "2026",
+            type: "Projet professionnel",
+            lieu: "Antananarivo, Madagascar",
+            description: "Developpement d'une plateforme de digitalisation de la chaine d'approvisionnement pour la restauration multi-sites, sur une architecture modulaire NestJS + Prisma + PostgreSQL.",
+            technologies: ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "Redis"],
+            accomplissements: [
+                "Architecture modulaire NestJS + TypeScript avec ORM Prisma",
+                "Reapprovisionnement par seuil multi-sites (APPRO = SEUIL - STOCK)",
+                "Traitements asynchrones via BullMQ + Redis",
+                "Comptabilite en Decimal et journal d'audit immuable pour la tracabilite",
+                "Gestion fine des roles et permissions (RBAC)"
+            ]
+        },
+        {
+            id: "exp-6",
+            poste: "CTO — ACTIPASS",
+            entreprise: "ACTIPASS (STELLARIX)",
+            periode: "2025 — 2026",
+            type: "Direction technique",
+            lieu: "Antananarivo, Madagascar",
+            description: "Direction technique (CTO) de la plateforme nationale de certification et de verification anti-fraude ACTIPASS : vision, conception, documentation et architecture fonctionnelle. Developpement realise par l'equipe Pulse, hebergement assure par Stellarix.",
+            technologies: ["Direction technique", "UI/UX", "Architecture fonctionnelle", "Diagrammes de flux", "Documentation (MOA/MVP)"],
+            accomplissements: [
+                "Definition de la vision technique du projet",
+                "Redaction de la documentation fonctionnelle et technique (MOA, MVP, cahier des charges)",
+                "Conception des maquettes UI/UX de la plateforme",
+                "Realisation des diagrammes de flux et de l'architecture fonctionnelle",
+                "Participation aux choix techniques et aux orientations technologiques",
+                "Supervision et coordination technique avec l'equipe de developpement (Pulse) et l'hebergeur (Stellarix)"
+            ]
         }
     ],
     diplomes: [
@@ -272,7 +351,7 @@ const portfolioData = {
         { type: "email",     value: "tsialoninajeanedouard@gmail.com" },
         { type: "phone",     value: "0346503454 / 0337514453" },
         { type: "whatsapp",  value: "0331933390" },
-        { type: "linkedin",  value: "Tsialonina Jean Edouard" },
+        { type: "linkedin",  value: "Tsialonina Jean Edouard", url: "https://www.linkedin.com/in/TsialoninaJeanEdouard" },
         { type: "github",    value: "RAMAROTSIALONINA", url: "https://github.com/RAMAROTSIALONINA" },
         { type: "facebook",  value: "TsialoninaIsmael" },
         { type: "instagram", value: "Tsialonina Jean" }
@@ -293,7 +372,7 @@ const portfolioData = {
         { nom: "Gestion du temps",        icone: "fas fa-clock" }
     ],
     stats: [
-        { valeur: 7,  suffix: "+", label: "Projets réalisés",        icone: "fas fa-code-branch" },
+        { valeur: 9,  suffix: "+", label: "Projets réalisés",        icone: "fas fa-code-branch" },
         { valeur: 3,  suffix: "+", label: "Ans d'expérience",        icone: "fas fa-briefcase" },
         { valeur: 15, suffix: "+", label: "Technologies maîtrisées", icone: "fas fa-layer-group" },
         { valeur: 95, suffix: "%", label: "Taux détection IA",       icone: "fas fa-robot" }

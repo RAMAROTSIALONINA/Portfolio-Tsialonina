@@ -458,6 +458,7 @@ h2 .section-emoji { margin-right: 8px; }
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
     gap: 24px;
     max-width: 1100px;
     margin: 0 auto;
@@ -510,8 +511,15 @@ h2 .section-emoji { margin-right: 8px; }
     color: var(--text-muted);
     font-size: 0.9rem;
     margin: 0;
-    flex: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
 }
+
+/* Pousse les tags + boutons en bas pour garder l'alignement des cartes */
+.project-card .tags { margin-top: auto; }
 
 /* ─── Tags ────────────────────────────────────────────────────────── */
 .tags {
@@ -1553,7 +1561,7 @@ body.dark-theme .availability-badge {
     .hero-inner { gap: 18px; }
 
     /* Grilles */
-    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
     .contact-grid  { grid-template-columns: 1fr 1fr; }
     .langues-grid  { grid-template-columns: 1fr 1fr; }
 
