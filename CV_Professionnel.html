@@ -1207,7 +1207,7 @@
             }
             .sidebar {
                 display: table-cell;
-                width: 31%;
+                width: 34%;
                 vertical-align: top;
                 overflow: visible;
                 break-inside: auto;
@@ -1215,7 +1215,7 @@
             }
             .main-content {
                 display: table-cell;
-                width: 69%;
+                width: 66%;
                 vertical-align: top;
                 overflow: visible;
                 break-inside: auto;
@@ -1228,6 +1228,51 @@
             .language-item,
             .soft-skill-item,
             .stat-bar-item { break-inside: avoid; page-break-inside: avoid; }
+
+            /* ── Finitions impression ─────────────────────────────────
+               Le text-shadow est rendu dans le PDF comme un second calque
+               de texte : rendu moins net et texte dupliqué au copier-coller
+               (problématique pour les logiciels de lecture de CV / ATS). */
+            h1, h2, h3,
+            .profile-info h1, .profile-title,
+            .section-title, .timeline-date, .timeline-title,
+            .project-title, .chart-percentage, .chart-title,
+            .stat-bar-value, .dot-score, .formation-item strong {
+                text-shadow: none !important;
+            }
+
+            /* Valeurs longues (email, URL) : autoriser la coupure au lieu
+               de déborder de la colonne étroite. */
+            .contact-info-text { min-width: 0; flex: 1 1 auto; }
+            .contact-value {
+                font-size: 7pt;
+                line-height: 1.3;
+                overflow-wrap: break-word;   /* coupe aux tirets et slashs */
+            }
+            .contact-sidebar-item { align-items: flex-start; }
+            .contact-sidebar-item i { margin-top: 1px; }
+
+            /* Respiration entre les blocs de la colonne de gauche */
+            .dot-chart  { margin-top: 10px; }
+            .stats-bars { margin-top: 10px; margin-bottom: 0 !important; }
+
+            /* Valeur des barres : pastille blanche pour rester lisible aussi
+               bien sur la partie colorée que sur la piste claire. */
+            .stat-bar-value {
+                background: #ffffff;
+                color: #2c3e50;
+                padding: 0 4px;
+                border-radius: 6px;
+                font-size: 7pt;
+                line-height: 1.5;
+            }
+
+            /* Rendu net des aplats de couleur */
+            .sidebar, .cv-header, .tech-tag, .skill-group,
+            .stat-bar-fill, .dot.filled {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
