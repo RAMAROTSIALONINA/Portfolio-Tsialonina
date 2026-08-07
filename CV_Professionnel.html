@@ -1168,9 +1168,58 @@
                 box-shadow: none !important;
             }
 
-            /* ── Contrôle des sauts de page ── */
-            .section { page-break-inside: avoid; }
-            header   { page-break-after: avoid; }
+            /* ── Contrôle des sauts de page ──
+               Les sections longues (expériences, projets) doivent pouvoir se
+               répartir sur plusieurs pages ; seuls les items restent insécables
+               (règles .timeline-item / .project-item / .formation-item). */
+            .section { page-break-inside: auto; margin-bottom: 7px; }
+            .section-title { page-break-after: avoid; }
+
+            /* Densité : éviter une dernière page presque vide */
+            .timeline-item   { margin-bottom: 7px !important; }
+            .project-item    { margin-bottom: 6px !important; }
+            .formation-item  { margin-bottom: 5px !important; }
+            .skill-group     { padding: 4px 9px !important; }
+
+            /* ── Correctifs impression ──────────────────────────────
+               La largeur A4 (~680px utiles) déclenche les media queries
+               mobiles : on rétablit ici la mise en page bureau. */
+            .profile-section {
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+            }
+            .cv-header    { height: auto; }
+            .cv-container { overflow: visible; }
+
+            /* Le CSS grid ne se fragmente pas entre les pages : on passe en
+               flux bloc pour que le contenu se pagine correctement. */
+            .cv-body {
+                display: block;
+                overflow: visible;
+            }
+            .sidebar, .main-content {
+                width: 100%;
+                box-sizing: border-box;
+                overflow: visible;
+                break-inside: auto;
+                page-break-inside: auto;
+            }
+            .sidebar { padding: 10px 16px 6px; }
+
+            /* Sidebar compacte : listes réparties sur 2 colonnes */
+            .contact-sidebar,
+            .personal-info,
+            .divers-info {
+                column-count: 2;
+                column-gap: 22px;
+            }
+            .contact-sidebar-item,
+            .personal-info-item,
+            .divers-item,
+            .language-item,
+            .soft-skill-item,
+            .stat-bar-item { break-inside: avoid; }
         }
     </style>
 </head>
@@ -1185,7 +1234,7 @@
                         <span style="display:block;font-size:2.5rem;font-weight:800;letter-spacing:1px">RAMAROTSIALONINA</span>
                         <span style="display:block;font-size:1.6rem;font-weight:400;letter-spacing:2px;opacity:0.92">Tinasoa Jean Edouard</span>
                     </h1>
-                    <div class="profile-title">Développeur Fullstack avec 3+ ans d'expérience, spécialisé en développement web et en intelligence artificielle, avec une formation en sciences cognitives.</div>
+                    <div class="profile-title">Développeur Fullstack avec 3+ ans d'expérience, spécialisé en développement web et en intelligence artificielle, avec une expérience de direction technique (CTO) et une formation en sciences cognitives.</div>
                 </div>
             </div>
         </header>
@@ -1380,8 +1429,8 @@
                         <div class="stat-bar-item">
                             <div class="stat-bar-label">Projets réalisés</div>
                             <div class="stat-bar-container">
-                                <div class="stat-bar-fill" style="width: 70%"></div>
-                                <div class="stat-bar-value">7+</div>
+                                <div class="stat-bar-fill" style="width: 85%"></div>
+                                <div class="stat-bar-value">10+</div>
                             </div>
                         </div>
                         
@@ -1396,8 +1445,8 @@
                         <div class="stat-bar-item">
                             <div class="stat-bar-label">Technologies maîtrisées</div>
                             <div class="stat-bar-container">
-                                <div class="stat-bar-fill" style="width: 75%"></div>
-                                <div class="stat-bar-value">15+</div>
+                                <div class="stat-bar-fill" style="width: 90%"></div>
+                                <div class="stat-bar-value">20+</div>
                             </div>
                         </div>
                     </div>
@@ -1452,11 +1501,58 @@
                     <h3 class="section-title">Expériences Professionnelles</h3>
                     <div class="timeline">
                         <div class="timeline-item">
+                            <div class="timeline-date">2025 — 2026</div>
+                            <div class="timeline-title">CTO — Direction technique</div>
+                            <div class="timeline-company">ACTIPASS (STELLARIX)</div>
+                            <div class="timeline-description">
+                                Direction technique de la plateforme nationale de certification et de vérification anti-fraude documentaire : vision technique, documentation fonctionnelle (MOA, MVP, cahier des charges), maquettes UI/UX, diagrammes de flux et architecture fonctionnelle. Développement réalisé par l'équipe Pulse, hébergement assuré par Stellarix.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Direction technique</span>
+                                <span class="tech-tag">UI/UX</span>
+                                <span class="tech-tag">Architecture fonctionnelle</span>
+                                <span class="tech-tag">Documentation (MOA/MVP)</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-title">Développeur Fullstack</div>
+                            <div class="timeline-company">SGCI — Système de Gestion et Contrôle Intégré</div>
+                            <div class="timeline-description">
+                                Plateforme de digitalisation de la chaîne d'approvisionnement pour la restauration multi-sites : réapprovisionnement par seuil (APPRO = SEUIL − STOCK), stocks centraux, validation financière et audit, sur une architecture modulaire.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">NestJS</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Prisma</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Redis</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-title">Développeur Fullstack</div>
+                            <div class="timeline-company">Fiche Technique BOGOTA — Restaurant BOGOTA</div>
+                            <div class="timeline-description">
+                                Logiciel métier de gestion des fiches techniques de cuisine : calcul automatique des coûts de revient, recalcul en cascade des prix, suivi de la rentabilité et double export PDF (direction / cuisine). Application locale livrée sous forme d'installateur Windows.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">SQLAlchemy</span>
+                                <span class="tech-tag">SQLite</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
                             <div class="timeline-date">2026</div>
                             <div class="timeline-title">Développeur Fullstack</div>
                             <div class="timeline-company">Bourbon Morelli — Plateforme E-Commerce Luxe</div>
                             <div class="timeline-description">
-                                Développement d'une plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'élégance française.
+                                Développement d'une plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'élégance française, en ligne sur bourbonmorelli.com.
                             </div>
                             <div class="tech-tags">
                                 <span class="tech-tag">React</span>
@@ -1518,16 +1614,19 @@
                     
                     <div class="skills-simple">
                         <div class="skill-group">
-                            <strong>Frontend:</strong> JavaScript, React, HTML5/CSS3, Bootstrap
+                            <strong>Frontend:</strong> JavaScript, TypeScript, React, HTML5/CSS3, Bootstrap, TailwindCSS
                         </div>
                         <div class="skill-group">
-                            <strong>Backend:</strong> Python, Node.js, Java, PHP, Express.js
+                            <strong>Backend:</strong> Python, Node.js, NestJS, FastAPI, Express.js, Java, PHP
                         </div>
                         <div class="skill-group">
-                            <strong>Bases de données:</strong> MySQL, PostgreSQL, SQLite, SQL
+                            <strong>Bases de données:</strong> SQL, MySQL, PostgreSQL, SQLite, Prisma (ORM), Redis
                         </div>
                         <div class="skill-group">
-                            <strong>IA & Data Science:</strong> Pandas, NumPy, Machine Learning
+                            <strong>IA & Data Science:</strong> Pandas, NumPy, Machine Learning, ACP / AFC
+                        </div>
+                        <div class="skill-group">
+                            <strong>Outils & Méthodes:</strong> Git, Vite, Webpack, BullMQ, PyInstaller, architecture fonctionnelle, UI/UX
                         </div>
                     </div>
                 </section>
