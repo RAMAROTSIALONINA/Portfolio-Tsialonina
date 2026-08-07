@@ -215,6 +215,14 @@ document.addEventListener('DOMContentLoaded', function () {
         default:   'fas fa-laptop-code',
     };
 
+    const statusMap = {
+        'en-ligne':      { label: 'En ligne',         cls: 'st-online' },
+        'production':    { label: 'En production',    cls: 'st-prod'   },
+        'developpement': { label: 'En développement', cls: 'st-dev'    },
+        'conception':    { label: 'En conception',    cls: 'st-design' },
+        'termine':       { label: 'Terminé',          cls: 'st-done'   },
+    };
+
     const skillIcons = {
         'Langages de programmation': { icon: 'fas fa-code',     accent: false },
         'Bases de données':          { icon: 'fas fa-database', accent: true  },
@@ -250,24 +258,39 @@ document.addEventListener('DOMContentLoaded', function () {
             const mainTech = projet.technologies.find(t => projectIcons[t]) || 'default';
             const icon     = projectIcons[mainTech];
 
+            const st = statusMap[projet.statut];
+            const statusBadge = st
+                ? `<span class="project-status ${st.cls}"><span class="st-dot"></span>${st.label}</span>` : '';
+            const meta = (projet.annee || projet.role)
+                ? `<div class="project-meta">${[projet.annee, projet.role].filter(Boolean).join(' · ')}</div>` : '';
+
+            /* Tous les tags sont rendus ; fitProjectTags() masque ceux qui
+               dépassent la première ligne et met à jour la puce « +N ». */
+            const shownTags = projet.technologies.map(t => `<span>${t}</span>`).join('');
+            const moreTag   = `<span class="tag-more" style="display:none">+0</span>`;
+
+            const detailsBtn = `<button class="details-button${projet.url ? '' : ' primary'}" data-modal-target="modal-${projet.id}"><i class="fas fa-search-plus" style="margin-right:5px"></i>Voir les détails</button>`;
             const urlBtnCard = projet.url
-                ? `<a class="details-button live-btn" href="${projet.url}" target="_blank" rel="noopener noreferrer">
-                       <i class="fas fa-external-link-alt" style="margin-right:5px"></i>Voir le site
-                   </a>` : '';
+                ? `<a class="details-button primary" href="${projet.url}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" style="margin-right:5px"></i>Voir le site</a>` : '';
 
             const card = document.createElement('div');
             card.className = 'project-card reveal';
             card.dataset.technologies = projet.technologies.join(',');
             card.style.transitionDelay = `${idx * 60}ms`;
             card.innerHTML = `
-                <h3><i class="${icon}" style="margin-right:8px;color:var(--primary)"></i>${projet.titre}</h3>
-                <p>${projet.description}</p>
-                <div class="tags">${projet.technologies.map(t => `<span>${t}</span>`).join('')}</div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
-                    <button class="details-button" data-modal-target="modal-${projet.id}">
-                        <i class="fas fa-search-plus" style="margin-right:5px"></i>Voir les détails
-                    </button>
-                    ${urlBtnCard}
+                <div class="project-cover">
+                    <i class="${icon}"></i>
+                    ${statusBadge}
+                </div>
+                <div class="project-body">
+                    <h3>${projet.titre}</h3>
+                    ${meta}
+                    <p>${projet.description}</p>
+                    <div class="tags">${shownTags}${moreTag}</div>
+                    <div class="card-actions">
+                        ${urlBtnCard}
+                        ${detailsBtn}
+                    </div>
                 </div>
             `;
             grid.appendChild(card);
@@ -564,6 +587,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    /* ── Tags projets : une seule ligne, le reste dans « +N » ──────
+       Les libellés ayant des largeurs variables, on mesure au lieu de
+       fixer un nombre : on garde ceux qui tiennent sur la 1ʳᵉ ligne. */
+    function fitProjectTags() {
+        const GAP = 6;
+        document.querySelectorAll('#projets-grid .project-card').forEach(card => {
+            const tags = card.querySelector('.tags');
+            if (!tags) return;
+            const all  = [...tags.querySelectorAll('span:not(.tag-more)')];
+            const more = tags.querySelector('.tag-more');
+            if (!all.length || !more) return;
+
+            /* Réinitialiser avant de mesurer */
+            all.forEach(s => s.style.display = '');
+            more.style.display = 'none';
+
+            const max = tags.clientWidth;
+            if (!max) return;                     /* carte masquée : rien à faire */
+
+            const widths = all.map(s => s.offsetWidth);
+            const widthOf = n => widths.slice(0, n).reduce((a, w, i) => a + w + (i ? GAP : 0), 0);
+
+            /* Combien tiennent sans la puce « +N » ? */
+            let shown = 0;
+            while (shown < all.length && widthOf(shown + 1) <= max) shown++;
+
+            /* S'il en reste, réserver la place de la puce « +N » */
+            if (shown < all.length) {
+                more.style.display = '';
+                while (shown > 1) {
+                    more.textContent = `+${all.length - shown}`;
+                    if (widthOf(shown) + GAP + more.offsetWidth <= max) break;
+                    shown--;
+                }
+                more.textContent = `+${all.length - shown}`;
+            }
+
+            all.forEach((s, i) => s.style.display = i < shown ? '' : 'none');
+        });
+    }
+
     /* ══════════════════════════════════════════════════════════════
        8. FILTRE PROJETS
     ══════════════════════════════════════════════════════════════ */
@@ -578,8 +642,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.classList.toggle('hidden', !show);
                 card.classList.toggle('visible', show);
             });
+            fitProjectTags();
         });
     });
+
+    /* Recalcul des tags : au chargement, au redimensionnement et dès que
+       le contenu devient visible (les cartes masquées ne se mesurent pas). */
+    fitProjectTags();
+    window.addEventListener('load', fitProjectTags);
+    if (window.ResizeObserver) {
+        const grid = document.getElementById('projets-grid');
+        if (grid) new ResizeObserver(fitProjectTags).observe(grid);
+    } else {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(fitProjectTags, 150);
+        });
+    }
 
     /* ══════════════════════════════════════════════════════════════
        9. MODALES

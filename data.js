@@ -3,6 +3,7 @@ const portfolioData = {
         {
             id: "projet-4",
             titre: "Site web de l'EGRIE",
+            annee: "2022", role: "Fullstack", statut: "termine",
             description: "Developpeur Web Fullstack - Conception et developpement du site web officiel de l'etablissement EGRIE realise en 2022.",
             technologies: ["PHP", "CodeIgniter 3", "SQLite"],
             details: "Developpeur Web Fullstack - Conception et developpement du site web officiel de l'etablissement EGRIE realise en 2022. Role : Responsable du developpement front-end et de l'integration des fonctionnalites. Technologies : Utilisation de PHP avec le framework CodeIgniter 3 pour la robustesse et la securite."
@@ -10,6 +11,7 @@ const portfolioData = {
         {
             id: "projet-3",
             titre: "Gestion d'etablissement en Java",
+            annee: "2023", role: "Desktop", statut: "termine",
             description: "Projet de fin d'etude (Licence). Application desktop de gestion des etudiants, enseignants, notes, absences et emplois du temps. Interface JavaFX, logique metier Java, base de donnees MySQL.",
             technologies: ["Java", "JavaFX", "MySQL"],
             details: "Projet de fin d'etude pour l'obtention du diplome de licence realise en 2023. Application desktop complete de gestion d'etablissement scolaire. Interface graphique realisee en JavaFX, logique metier en Java pur, donnees stockees dans MySQL. Fonctionnalites : gestion des etudiants et enseignants, suivi des notes et absences, gestion des emplois du temps."
@@ -17,6 +19,7 @@ const portfolioData = {
         {
             id: "projet-5",
             titre: "Projet sur l'intelligence artificielle",
+            annee: "2024", role: "IA / Data", statut: "termine",
             description: "Projet d'etude axe sur l'exploration de l'IA et des reseaux de neurones realise en 2024.",
             technologies: ["IA", "Anaconda", "Python"],
             details: "Projet d'etude axe sur l'exploration de l'IA et des reseaux de neurones realise en 2024. Objectif : Comprendre le fonctionnement et les applications des modeles predictifs. Technologie : Realise avec Python et la plateforme Anaconda pour gerer les bibliotheques et l'environnement de developpement."
@@ -24,6 +27,7 @@ const portfolioData = {
         {
             id: "projet-2",
             titre: "Detecteur de fichiers",
+            annee: "2024", role: "IA", statut: "termine",
             description: "Developpement d'un logiciel de detection de fichiers base sur l'intelligence artificielle pour l'identification de documents malveillants realise en 2024.",
             technologies: ["IA", "Python", "Pandas", "NumPy"],
             details: "Developpement d'un logiciel de detection de fichiers base sur l'intelligence artificielle pour l'identification de documents malveillants realise en 2024. Defi : Creer un modele d'IA efficace avec une faible consommation de ressources. Resultat : Un taux de detection de 95% sur les donnees de test, prouvant la performance de l'algorithme."
@@ -31,6 +35,7 @@ const portfolioData = {
         {
             id: "projet-1",
             titre: "Logiciel de gestion de vehicule",
+            annee: "2025", role: "Backend", statut: "termine",
             description: "Creation d'un logiciel pour la gestion de vehicules de Toutadom au sein de Swiss Madagascar realise en 2025.",
             technologies: ["Python", "PostgreSQL"],
             details: "Creation d'un logiciel pour la gestion de vehicules de Toutadom au sein de Swiss Madagascar realise en 2025. Role : Developpement complet du back-end et de la base de donnees. Resultat : Optimisation du suivi et de la maintenance des vehicules, reduisant les erreurs de 20%."
@@ -38,6 +43,7 @@ const portfolioData = {
         {
             id: "projet-6",
             titre: "Plateforme TELEX — Television Etudiante",
+            annee: "2025", role: "Fullstack", statut: "en-ligne",
             url: "http://telex.mg/",
             description: "Plateforme web complete pour une television etudiante realisee en 2025 : gestion de programmes TV, module spirituel Baume de la Foi, interface multilingue FR/EN, systeme admin avec roles, upload medias et conformite RGPD.",
             technologies: ["Node.js", "Express.js", "EJS", "SQLite3", "Bootstrap 5", "JavaScript", "Multer", "JWT"],
@@ -64,6 +70,7 @@ const portfolioData = {
         {
             id: "projet-7",
             titre: "Bourbon Morelli — Plateforme E-Commerce Luxe",
+            annee: "2026", role: "Fullstack", statut: "en-ligne",
             url: "https://bourbonmorelli.com/",
             description: "Plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'elegance francaise realisee en 2026, en ligne sur bourbonmorelli.com. Confection sur mesure, design Made in Madagascar et experience utilisateur premium.",
             technologies: ["React", "JavaScript", "Node.js", "Express.js", "MySQL", "TailwindCSS", "JWT", "Webpack"],
@@ -88,6 +95,7 @@ const portfolioData = {
         {
             id: "projet-8",
             titre: "SGCI — Systeme de Gestion et Controle Integre",
+            annee: "2026", role: "Fullstack", statut: "developpement",
             description: "Plateforme de digitalisation de la chaine d'approvisionnement pour la restauration multi-sites (Antananarivo) realisee en 2026 : inventaires par seuil, stocks centraux, validation financiere et audit, sur une architecture modulaire NestJS + Prisma + PostgreSQL.",
             technologies: ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "BullMQ", "Redis", "React", "Vite"],
             stack: [
@@ -111,10 +119,39 @@ const portfolioData = {
             details: "SGCI (Systeme de Gestion et Controle Integre) digitalise la chaine d'approvisionnement d'une restauration multi-sites a Antananarivo : consommation des sites, stocks centraux, validation financiere et controle. L'architecture repose sur NestJS + TypeScript (API modulaire), Prisma comme ORM, PostgreSQL 17, ainsi que BullMQ + Redis pour les traitements asynchrones ; l'interface est developpee en React + Vite. Le coeur metier est un reapprovisionnement par seuil (APPRO = SEUIL - STOCK) consolide sur plusieurs sites, complete par des modules de comptabilite et d'audit. Trois regles non negociables structurent le systeme : montants en Decimal (jamais de flottant), journal d'audit immuable, et aucune suppression physique (soft delete par contrepassation)."
         },
         {
+            id: "projet-10",
+            titre: "Fiche Technique BOGOTA — Gestion de recettes & couts",
+            annee: "2026", role: "Fullstack", statut: "production",
+            description: "Logiciel de gestion des fiches techniques de cuisine pour le restaurant BOGOTA : calcul automatique des couts de revient, recalcul en cascade des prix et suivi de la rentabilite de chaque recette. Application locale, utilisable sans connexion internet.",
+            technologies: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "JavaScript", "PyMuPDF", "openpyxl", "PyInstaller"],
+            stack: [
+                { couche: "Backend",         techno: "FastAPI (Python)",        usage: "API REST et logique metier" },
+                { couche: "ORM",             techno: "SQLAlchemy",              usage: "Modelisation et acces aux donnees" },
+                { couche: "Base de donnees", techno: "SQLite",                  usage: "Stockage local des fiches et du catalogue" },
+                { couche: "Frontend",        techno: "HTML / CSS / JavaScript", usage: "Interface SPA sans framework" },
+                { couche: "Serveur",         techno: "Uvicorn",                 usage: "Serveur ASGI local" },
+                { couche: "Export PDF",      techno: "PyMuPDF",                 usage: "Fiches imprimables admin et cuisine" },
+                { couche: "Import Excel",    techno: "openpyxl",                usage: "Reprise des fichiers Excel existants" },
+                { couche: "Distribution",    techno: "PyInstaller + Inno Setup",usage: "Installateur Windows autonome" }
+            ],
+            fonctionnalites: [
+                { categorie: "Recettes",     items: "Fiches techniques completes (ingredients, etapes, photo) et catalogue d'ingredients centralise" },
+                { categorie: "Couts",        items: "Calcul automatique du cout de revient, coefficient de marge et prix de vente conseille" },
+                { categorie: "Recalcul",     items: "Un prix modifie au catalogue met a jour instantanement toutes les recettes concernees" },
+                { categorie: "Rentabilite",  items: "Classement automatique de chaque recette : rentable, a surveiller ou en perte" },
+                { categorie: "Documents",    items: "Export PDF en deux versions : fiche admin avec les couts, fiche cuisine sans aucun prix" },
+                { categorie: "Import",       items: "Reprise des anciennes fiches Excel, meme lorsque la mise en page differe" },
+                { categorie: "Securite",     items: "Donnees sensibles (couts, marges) reservees aux comptes administrateurs" },
+                { categorie: "Deploiement",  items: "Fonctionnement 100% local sans internet, livre sous forme d'installateur Windows" }
+            ],
+            details: "Fiche Technique BOGOTA est un logiciel metier concu pour la cuisine d'un restaurant : il centralise les fiches techniques des recettes et automatise entierement le calcul des couts. Avant, chaque changement de prix fournisseur imposait de recalculer manuellement toutes les recettes concernees ; desormais une seule modification au catalogue se propage automatiquement. Chaque recette est classee selon sa rentabilite (rentable, alerte ou perte) et s'exporte en PDF en deux versions : une fiche complete pour la direction avec les couts et les marges, et une fiche pour la cuisine sans aucun chiffre sensible. L'architecture repose sur un backend FastAPI (Python) avec SQLAlchemy et SQLite, une interface SPA en JavaScript sans framework, l'export PDF via PyMuPDF et l'import Excel via openpyxl. L'application fonctionne en local sans connexion internet et est distribuee sous forme d'installateur Windows genere avec PyInstaller et Inno Setup."
+        },
+        {
             id: "projet-9",
             titre: "ACTIPASS — Plateforme de Certification & Verification",
+            annee: "2026", role: "CTO", statut: "conception",
             description: "Infrastructure nationale de confiance pour la digitalisation, la verification et la certification securisee des informations academiques, administratives et professionnelles (lutte contre la fraude documentaire). Intervention en tant que CTO : direction technique, conception, documentation et architecture fonctionnelle. Developpement realise par l'equipe Pulse, hebergement assure par Stellarix.",
-            technologies: ["Direction technique", "UI/UX", "Architecture fonctionnelle", "Diagrammes de flux", "Documentation (MOA/MVP)"],
+            technologies: ["CTO", "UI/UX", "Architecture", "Flow Diagrams", "MOA / MVP"],
             fonctionnalites: [
                 { categorie: "Certification", items: "Digitalisation, verification et certification des diplomes et documents administratifs et professionnels" },
                 { categorie: "Anti-fraude",   items: "Preuve d'integrite par blockchain, verification par QR code, chiffrement des donnees sensibles" },
@@ -137,8 +174,10 @@ const portfolioData = {
             niveaux: [
                 { nom: "Python",     pct: 90 },
                 { nom: "JavaScript", pct: 85 },
+                { nom: "TypeScript", pct: 80 },
                 { nom: "Java",       pct: 80 },
                 { nom: "Node.js",    pct: 78 },
+                { nom: "NestJS",     pct: 75 },
                 { nom: "PHP",        pct: 72 },
                 { nom: "C++",        pct: 60 }
             ],
@@ -157,7 +196,9 @@ const portfolioData = {
                 { nom: "SQL",        pct: 85 },
                 { nom: "MySQL",      pct: 80 },
                 { nom: "PostgreSQL", pct: 78 },
-                { nom: "SQLite",     pct: 75 }
+                { nom: "Prisma",     pct: 76 },
+                { nom: "SQLite",     pct: 75 },
+                { nom: "Redis",      pct: 68 }
             ],
             tags: ["SQL", "MySQL", "PostgreSQL", "SQLite", "Prisma", "Redis"]
         },
@@ -184,8 +225,10 @@ const portfolioData = {
                 { label: "Build & Outils", value: "Vite, BullMQ" }
             ],
             niveaux: [
+                { nom: "Vite",      pct: 72 },
                 { nom: "Photoshop", pct: 70 },
                 { nom: "OCR",       pct: 68 },
+                { nom: "BullMQ",    pct: 65 },
                 { nom: "R (Stats)", pct: 62 }
             ],
             tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ"]
@@ -282,7 +325,7 @@ const portfolioData = {
             type: "Direction technique",
             lieu: "Antananarivo, Madagascar",
             description: "Direction technique (CTO) de la plateforme nationale de certification et de verification anti-fraude ACTIPASS : vision, conception, documentation et architecture fonctionnelle. Developpement realise par l'equipe Pulse, hebergement assure par Stellarix.",
-            technologies: ["Direction technique", "UI/UX", "Architecture fonctionnelle", "Diagrammes de flux", "Documentation (MOA/MVP)"],
+            technologies: ["Direction technique", "UI/UX", "Architecture", "Diagrammes de flux", "MOA / MVP"],
             accomplissements: [
                 "Definition de la vision technique du projet",
                 "Redaction de la documentation fonctionnelle et technique (MOA, MVP, cahier des charges)",
@@ -290,6 +333,24 @@ const portfolioData = {
                 "Realisation des diagrammes de flux et de l'architecture fonctionnelle",
                 "Participation aux choix techniques et aux orientations technologiques",
                 "Supervision et coordination technique avec l'equipe de developpement (Pulse) et l'hebergeur (Stellarix)"
+            ]
+        },
+        {
+            id: "exp-7",
+            poste: "Developpeur Fullstack — Fiche Technique BOGOTA",
+            entreprise: "Restaurant BOGOTA",
+            periode: "2026",
+            type: "Logiciel metier",
+            lieu: "Antananarivo, Madagascar",
+            description: "Conception et developpement d'un logiciel de gestion des fiches techniques de cuisine : calcul automatique des couts de revient, recalcul en cascade des prix et suivi de la rentabilite des recettes.",
+            technologies: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "JavaScript"],
+            accomplissements: [
+                "Developpement complet du backend en FastAPI avec SQLAlchemy et SQLite",
+                "Automatisation du calcul des couts et recalcul en cascade a chaque changement de prix",
+                "Classement automatique des recettes par rentabilite (rentable, alerte, perte)",
+                "Double export PDF : fiche direction avec les couts, fiche cuisine sans donnees sensibles",
+                "Import des anciennes fiches Excel et interface SPA en JavaScript sans framework",
+                "Distribution sous forme d'installateur Windows autonome (PyInstaller + Inno Setup)"
             ]
         }
     ],
@@ -372,7 +433,7 @@ const portfolioData = {
         { nom: "Gestion du temps",        icone: "fas fa-clock" }
     ],
     stats: [
-        { valeur: 9,  suffix: "+", label: "Projets réalisés",        icone: "fas fa-code-branch" },
+        { valeur: 10, suffix: "+", label: "Projets réalisés",        icone: "fas fa-code-branch" },
         { valeur: 3,  suffix: "+", label: "Ans d'expérience",        icone: "fas fa-briefcase" },
         { valeur: 15, suffix: "+", label: "Technologies maîtrisées", icone: "fas fa-layer-group" },
         { valeur: 95, suffix: "%", label: "Taux détection IA",       icone: "fas fa-robot" }

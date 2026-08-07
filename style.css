@@ -468,14 +468,14 @@ h2 .section-emoji { margin-right: 8px; }
 /* ─── Cards projet ────────────────────────────────────────────────── */
 .project-card {
     background-color: var(--bg-card);
-    padding: 28px;
+    padding: 0;
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0;
     position: relative;
     overflow: hidden;
 }
@@ -502,9 +502,14 @@ h2 .section-emoji { margin-right: 8px; }
     color: var(--text);
     font-size: 1.05rem;
     font-weight: 700;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
     margin: 0;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    min-height: 2.7em;
 }
 
 .project-card p {
@@ -513,13 +518,117 @@ h2 .section-emoji { margin-right: 8px; }
     margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     overflow: hidden;
 }
 
-/* Pousse les tags + boutons en bas pour garder l'alignement des cartes */
-.project-card .tags { margin-top: auto; }
+/* Pousse les tags + boutons en bas ; une seule ligne (voir fitProjectTags) */
+.project-card .tags {
+    margin-top: auto;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+.project-card .tags > span { flex-shrink: 0; }
+
+/* ─── Cover (bandeau) + statut + méta ─────────────────────────────── */
+.project-cover {
+    position: relative;
+    height: 104px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient);
+    overflow: hidden;
+}
+.project-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 28% 22%, rgba(255,255,255,0.28), transparent 62%);
+}
+.project-cover > i {
+    font-size: 2.6rem;
+    color: rgba(255,255,255,0.92);
+    z-index: 1;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.22));
+}
+
+.project-status {
+    position: absolute;
+    top: 12px; right: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    background: rgba(255,255,255,0.92);
+    color: #1e293b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+}
+.project-status .st-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.st-online .st-dot { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,0.28); }
+.st-prod   .st-dot { background: #14b8a6; }
+.st-dev    .st-dot { background: #0ea5e9; }
+.st-design .st-dot { background: #f59e0b; }
+.st-done   .st-dot { background: #94a3b8; }
+
+.project-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 24px 24px;
+    flex: 1;
+}
+.project-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.3px;
+    margin-top: -6px;
+}
+
+.tag-more {
+    display: inline-block;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px dashed var(--border);
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 4px;
+}
+.card-actions .details-button {
+    white-space: nowrap;
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+    padding: 7px 12px;
+}
+
+.details-button.primary {
+    background: var(--gradient);
+    color: #ffffff;
+    border-color: transparent;
+}
+.details-button.primary:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    color: #ffffff;
+    background: var(--gradient);
+}
 
 /* ─── Tags ────────────────────────────────────────────────────────── */
 .tags {
@@ -613,6 +722,16 @@ h2 .section-emoji { margin-right: 8px; }
 
 .project-card.hidden  { display: none; }
 .project-card.visible { display: flex; animation: fadeUp 0.45s ease both; }
+
+/* ─── Grille compétences : 2 colonnes (2 × 2) ────────────────────── */
+#competences-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;   /* chaque rangée s'adapte à son contenu */
+    max-width: 980px;
+}
+
+/* Tags + bouton alignés en bas de chaque carte compétence */
+.skill-card .tags { margin-top: auto; }
 
 /* ─── Cards compétences (avec icône et barre de niveau) ──────────── */
 .skill-card {
@@ -1562,6 +1681,7 @@ body.dark-theme .availability-badge {
 
     /* Grilles */
     .projects-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    #competences-grid { grid-template-columns: 1fr; }
     .contact-grid  { grid-template-columns: 1fr 1fr; }
     .langues-grid  { grid-template-columns: 1fr 1fr; }
 
