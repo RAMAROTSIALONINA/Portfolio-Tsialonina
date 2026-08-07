@@ -1319,8 +1319,17 @@
             .soft-skill-item      { padding: 1px 0; }
             .personal-info-item   { padding: 3px 6px; }
             .divers-item          { padding: 2px 6px; }
-            .sidebar .section     { margin-bottom: 4px; }
-            .section              { margin-bottom: 6px; }
+            /* Respiration avant le titre de la section suivante */
+            .sidebar .section     { margin-bottom: 11px; }
+            .section              { margin-bottom: 8px; }
+            .sidebar .section-title { margin-bottom: 5px; }
+
+            /* Indentation suspendue : les lignes repliees s'alignent sous la
+               liste et non sous le libelle, qui reste ainsi bien detache. */
+            .skill-group {
+                padding: 4px 8px 4px 20px !important;
+                text-indent: -11px;
+            }
             .timeline-item        { margin-bottom: 6px !important; }
             .project-item         { margin-bottom: 5px !important; }
             .formation-item       { margin-bottom: 2px !important; }
