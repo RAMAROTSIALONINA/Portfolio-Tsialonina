@@ -1192,34 +1192,38 @@
             .cv-header    { height: auto; }
             .cv-container { overflow: visible; }
 
-            /* Le CSS grid ne se fragmente pas entre les pages : on passe en
-               flux bloc pour que le contenu se pagine correctement. */
+            /* Mise en page 2 colonnes identique à l'écran (sidebar à gauche,
+               contenu à droite). Le CSS grid ne se fragmente pas entre les
+               pages : on utilise une table, qui elle se pagine correctement. */
             .cv-body {
-                display: block;
+                display: table;
+                width: 100%;
+                table-layout: fixed;
                 overflow: visible;
             }
-            .sidebar, .main-content {
-                width: 100%;
-                box-sizing: border-box;
+            .sidebar {
+                display: table-cell;
+                width: 31%;
+                vertical-align: top;
                 overflow: visible;
                 break-inside: auto;
                 page-break-inside: auto;
             }
-            .sidebar { padding: 10px 16px 6px; }
-
-            /* Sidebar compacte : listes réparties sur 2 colonnes */
-            .contact-sidebar,
-            .personal-info,
-            .divers-info {
-                column-count: 2;
-                column-gap: 22px;
+            .main-content {
+                display: table-cell;
+                width: 69%;
+                vertical-align: top;
+                overflow: visible;
+                break-inside: auto;
+                page-break-inside: auto;
             }
+
             .contact-sidebar-item,
             .personal-info-item,
             .divers-item,
             .language-item,
             .soft-skill-item,
-            .stat-bar-item { break-inside: avoid; }
+            .stat-bar-item { break-inside: avoid; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -1283,11 +1287,11 @@
                                 <span class="contact-value">github.com/RAMAROTSIALONINA</span>
                             </div>
                         </a>
-                        <a class="contact-sidebar-item" href="https://ramarotsialonina.github.io/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                        <a class="contact-sidebar-item" href="https://ramarotsialonina.github.io/Portfolio-Tsialonina/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
                             <i class="fas fa-globe"></i>
                             <div class="contact-info-text">
                                 <span class="contact-label">Portfolio</span>
-                                <span class="contact-value">ramarotsialonina.github.io</span>
+                                <span class="contact-value">ramarotsialonina.github.io/Portfolio-Tsialonina</span>
                             </div>
                         </a>
                         <div class="contact-sidebar-item">
@@ -1409,7 +1413,7 @@
                 </section>
 
                 <!-- Statistiques -->
-                <section class="section no-print">
+                <section class="section">
                     <h3 class="section-title">Statistiques</h3>
                     
                     <!-- Graphique circulaire - Taux détection IA -->
