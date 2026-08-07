@@ -1179,7 +1179,11 @@
             .timeline-item   { margin-bottom: 7px !important; }
             .project-item    { margin-bottom: 6px !important; }
             .formation-item  { margin-bottom: 5px !important; }
-            .skill-group     { padding: 4px 9px !important; }
+            /* Compétences techniques dans la colonne étroite : compactes */
+            .skills-simple   { gap: 3px !important; }
+            .skill-group     { padding: 3px 8px !important; font-size: 7.5pt !important; line-height: 1.35; }
+            .sidebar .section { margin-bottom: 5px; }
+            .chart-title     { margin-bottom: 4px !important; }
 
             /* ── Correctifs impression ──────────────────────────────
                La largeur A4 (~680px utiles) déclenche les media queries
@@ -1495,6 +1499,29 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Compétences Techniques -->
+                <section class="section">
+                    <h3 class="section-title">Compétences Techniques</h3>
+
+                    <div class="skills-simple">
+                        <div class="skill-group">
+                            <strong>Frontend:</strong> JavaScript, TypeScript, React, HTML5/CSS3, Bootstrap, TailwindCSS
+                        </div>
+                        <div class="skill-group">
+                            <strong>Backend:</strong> Python, Node.js, NestJS, FastAPI, Express.js, Java, PHP
+                        </div>
+                        <div class="skill-group">
+                            <strong>Bases de données:</strong> SQL, MySQL, PostgreSQL, SQLite, Prisma (ORM), Redis
+                        </div>
+                        <div class="skill-group">
+                            <strong>IA &amp; Data Science:</strong> Pandas, NumPy, Machine Learning, ACP / AFC
+                        </div>
+                        <div class="skill-group">
+                            <strong>Outils &amp; Méthodes:</strong> Git, Vite, Webpack, BullMQ, PyInstaller, architecture fonctionnelle, UI/UX
+                        </div>
+                    </div>
+                </section>
             </aside>
 
             <!-- Main Content -->
@@ -1608,29 +1635,6 @@
                                 <span class="tech-tag">CodeIgniter 3</span>
                                 <span class="tech-tag">SQLite</span>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Compétences Techniques -->
-                <section class="section">
-                    <h3 class="section-title">Compétences Techniques</h3>
-                    
-                    <div class="skills-simple">
-                        <div class="skill-group">
-                            <strong>Frontend:</strong> JavaScript, TypeScript, React, HTML5/CSS3, Bootstrap, TailwindCSS
-                        </div>
-                        <div class="skill-group">
-                            <strong>Backend:</strong> Python, Node.js, NestJS, FastAPI, Express.js, Java, PHP
-                        </div>
-                        <div class="skill-group">
-                            <strong>Bases de données:</strong> SQL, MySQL, PostgreSQL, SQLite, Prisma (ORM), Redis
-                        </div>
-                        <div class="skill-group">
-                            <strong>IA & Data Science:</strong> Pandas, NumPy, Machine Learning, ACP / AFC
-                        </div>
-                        <div class="skill-group">
-                            <strong>Outils & Méthodes:</strong> Git, Vite, Webpack, BullMQ, PyInstaller, architecture fonctionnelle, UI/UX
                         </div>
                     </div>
                 </section>
