@@ -1327,8 +1327,14 @@
             /* Indentation suspendue : les lignes repliees s'alignent sous la
                liste et non sous le libelle, qui reste ainsi bien detache. */
             .skill-group {
-                padding: 4px 8px 4px 20px !important;
-                text-indent: -11px;
+                padding: 4px 8px 4px 18px !important;
+                text-indent: 0 !important;
+            }
+            /* Libelle sur sa propre ligne, technologies indentees dessous */
+            .skill-group strong {
+                display: block;
+                margin-left: -10px;
+                margin-bottom: 1px;
             }
             .timeline-item        { margin-bottom: 6px !important; }
             .project-item         { margin-bottom: 5px !important; }
