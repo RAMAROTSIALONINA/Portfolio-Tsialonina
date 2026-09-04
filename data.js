@@ -435,7 +435,6 @@ const portfolioData = {
     stats: [
         { valeur: 10, suffix: "+", label: "Projets réalisés",        icone: "fas fa-code-branch" },
         { valeur: 3,  suffix: "+", label: "Ans d'expérience",        icone: "fas fa-briefcase" },
-        { valeur: 15, suffix: "+", label: "Technologies maîtrisées", icone: "fas fa-layer-group" },
-        { valeur: 95, suffix: "%", label: "Taux détection IA",       icone: "fas fa-robot" }
+        { valeur: 20, suffix: "+", label: "Technologies maîtrisées", icone: "fas fa-layer-group" }
     ]
 };
