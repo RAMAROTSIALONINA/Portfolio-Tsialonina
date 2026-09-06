@@ -223,6 +223,46 @@ document.addEventListener('DOMContentLoaded', function () {
         'termine':       { label: 'Terminé',          cls: 'st-done'   },
     };
 
+    /* Logo officiel de chaque technologie (Devicon).
+       Les entrees sans logo officiel retombent sur une icone Font Awesome
+       explicite, et tout nom inconnu sur une icone de code generique. */
+    const techIcons = {
+        'Java':        'devicon-java-plain colored',
+        'Python':      'devicon-python-plain colored',
+        'C++':         'devicon-cplusplus-plain colored',
+        'PHP':         'devicon-php-plain colored',
+        'JavaScript':  'devicon-javascript-plain colored',
+        'TypeScript':  'devicon-typescript-plain colored',
+        'HTML5':       'devicon-html5-plain colored',
+        'CSS3':        'devicon-css3-plain colored',
+        'React':       'devicon-react-original colored',
+        'Bootstrap':   'devicon-bootstrap-plain colored',
+        'TailwindCSS': 'devicon-tailwindcss-plain colored',
+        'Node.js':     'devicon-nodejs-plain colored',
+        'Express.js':  'devicon-express-original',
+        'NestJS':      'devicon-nestjs-plain colored',
+        'FastAPI':     'devicon-fastapi-plain colored',
+        'MySQL':       'devicon-mysql-plain colored',
+        'PostgreSQL':  'devicon-postgresql-plain colored',
+        'SQLite':      'devicon-sqlite-plain colored',
+        'Prisma':      'devicon-prisma-original',
+        'Redis':       'devicon-redis-plain colored',
+        'Pandas':      'devicon-pandas-plain colored',
+        'NumPy':       'devicon-numpy-plain colored',
+        'Anaconda':    'devicon-anaconda-original colored',
+        'Photoshop':   'devicon-photoshop-plain colored',
+        'Vite':        'devicon-vitejs-plain colored',
+        'Webpack':     'devicon-webpack-plain colored',
+        'Git':         'devicon-git-plain colored',
+        'Calcul Stochastique (R)': 'devicon-r-plain colored',
+        /* Pas de logo officiel dans Devicon */
+        'SQL':                      'fas fa-database',
+        'Machine Learning':         'fas fa-brain',
+        'OCR':                      'fas fa-file-lines',
+        'Maintenance informatique': 'fas fa-screwdriver-wrench',
+        'BullMQ':                   'fas fa-list-check',
+    };
+
     const skillIcons = {
         'Langages de programmation': { icon: 'fas fa-code',     accent: false },
         'Bases de données':          { icon: 'fas fa-database', accent: true  },
@@ -350,23 +390,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 `<div class="skill-detail-row"><strong>${d.label} :</strong> ${d.value}</div>`
             ).join('');
 
-            let niveauxHtml = '';
-            if (comp.niveaux) {
-                niveauxHtml = `<div class="skill-levels">
-                    ${comp.niveaux.map(n => `
-                        <div class="skill-level-row">
-                            <div class="skill-level-label">
-                                <span>${n.nom}</span><span>${n.pct}%</span>
-                            </div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" data-pct="${n.pct}"></div>
-                            </div>
-                        </div>`).join('')}
-                </div>`;
-            }
-
-            const tagsHtml = comp.tags
-                ? `<div class="tags">${comp.tags.map(t => `<span>${t}</span>`).join('')}</div>` : '';
+            /* Une carte par technologie, avec son logo officiel. */
+            const techHtml = comp.tags
+                ? `<div class="tech-grid">${comp.tags.map(t => `
+                        <div class="tech-card">
+                            <i class="${techIcons[t] || 'fas fa-code'}" aria-hidden="true"></i>
+                            <span>${t}</span>
+                        </div>`).join('')}</div>`
+                : '';
 
             card.innerHTML = `
                 <div class="skill-card-header">
@@ -374,8 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h3>${comp.titre}</h3>
                 </div>
                 <div class="skill-details">${detailsHtml}</div>
-                ${niveauxHtml}
-                ${tagsHtml}
+                ${techHtml}
                 <button class="details-button" data-modal-target="modal-${comp.id}">
                     <i class="fas fa-list" style="margin-right:5px"></i>Voir les détails
                 </button>

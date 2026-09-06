@@ -176,16 +176,6 @@ const portfolioData = {
                 { label: "Front-end", value: "HTML5, CSS3, JavaScript, TypeScript, React, Bootstrap" },
                 { label: "Back-end",  value: "Java, Python, C++, PHP, Node.js, Express.js, NestJS" }
             ],
-            niveaux: [
-                { nom: "Python",     pct: 90 },
-                { nom: "JavaScript", pct: 85 },
-                { nom: "TypeScript", pct: 80 },
-                { nom: "Java",       pct: 80 },
-                { nom: "Node.js",    pct: 78 },
-                { nom: "NestJS",     pct: 75 },
-                { nom: "PHP",        pct: 72 },
-                { nom: "C++",        pct: 60 }
-            ],
             tags: ["Java", "Python", "C++", "PHP", "TypeScript", "HTML5", "CSS3", "JavaScript", "React", "Bootstrap", "Node.js", "Express.js", "NestJS"]
         },
         {
@@ -197,14 +187,6 @@ const portfolioData = {
                 { label: "ORM",     value: "Prisma" },
                 { label: "Cache",   value: "Redis" }
             ],
-            niveaux: [
-                { nom: "SQL",        pct: 85 },
-                { nom: "MySQL",      pct: 80 },
-                { nom: "PostgreSQL", pct: 78 },
-                { nom: "Prisma",     pct: 76 },
-                { nom: "SQLite",     pct: 75 },
-                { nom: "Redis",      pct: 68 }
-            ],
             tags: ["SQL", "MySQL", "PostgreSQL", "SQLite", "Prisma", "Redis"]
         },
         {
@@ -215,11 +197,6 @@ const portfolioData = {
                 { label: "Outils",    value: "Python, Pandas, NumPy" },
                 { label: "Methodes",  value: "ACP, AFC, Modeles predictifs" }
             ],
-            niveaux: [
-                { nom: "Pandas",  pct: 82 },
-                { nom: "NumPy",   pct: 78 },
-                { nom: "ML / IA", pct: 72 }
-            ],
             tags: ["Pandas", "NumPy", "Anaconda", "Machine Learning"]
         },
         {
@@ -228,13 +205,6 @@ const portfolioData = {
             details: [
                 { label: "Competences",    value: "Calcul Stochastique (R), Operateur de saisie, Conception graphique (Photoshop), OCR, Maintenance informatique" },
                 { label: "Build & Outils", value: "Vite, BullMQ" }
-            ],
-            niveaux: [
-                { nom: "Vite",      pct: 72 },
-                { nom: "Photoshop", pct: 70 },
-                { nom: "OCR",       pct: 68 },
-                { nom: "BullMQ",    pct: 65 },
-                { nom: "R (Stats)", pct: 62 }
             ],
             tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ"]
         }

@@ -746,6 +746,48 @@ h2 .section-emoji { margin-right: 8px; }
 .project-card.hidden  { display: none; }
 .project-card.visible { display: flex; animation: fadeUp 0.45s ease both; }
 
+/* ─── Cartes technologies (logo + nom) ───────────────────────────── */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    gap: 10px;
+}
+
+.tech-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 6px;
+    text-align: center;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition), box-shadow var(--transition),
+                border-color var(--transition);
+}
+
+.tech-card:hover {
+    transform: scale(1.04);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary);
+}
+
+.tech-card i {
+    font-size: 1.85rem;
+    line-height: 1;
+    color: var(--text);          /* utilisé par les icônes sans couleur propre */
+}
+
+.tech-card span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    word-break: break-word;
+}
+
 /* ─── Grille compétences : 2 colonnes (2 × 2) ────────────────────── */
 #competences-grid {
     grid-template-columns: repeat(2, 1fr);
