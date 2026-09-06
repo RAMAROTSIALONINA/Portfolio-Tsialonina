@@ -747,13 +747,32 @@ h2 .section-emoji { margin-right: 8px; }
 .project-card.visible { display: flex; animation: fadeUp 0.45s ease both; }
 
 /* ─── Cartes technologies (logo + nom) ───────────────────────────── */
+/* Piste défilante : 4 cartes visibles, les suivantes au glissement */
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    display: flex;
+    min-width: 0;               /* autorise la piste à rétrécir dans sa carte */
     gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    cursor: grab;
+    padding-bottom: 2px;
+    /* barre de défilement masquée : la navigation se fait aux pastilles */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.tech-grid::-webkit-scrollbar { display: none; }
+
+.tech-grid.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;      /* suit le curseur sans lissage */
+    scroll-snap-type: none;
 }
 
 .tech-card {
+    flex: 0 0 calc(25% - 7.5px);   /* 4 par page (3 gaps de 10px répartis) */
+    scroll-snap-align: start;
+    user-select: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -788,9 +807,44 @@ h2 .section-emoji { margin-right: 8px; }
     word-break: break-word;
 }
 
+/* Pastilles de pagination */
+.tech-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.tech-dot {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: width var(--transition), background-color var(--transition);
+}
+
+.tech-dot:hover { background-color: var(--text-muted); }
+
+.tech-dot.active {
+    width: 20px;
+    border-radius: 4px;
+    background: var(--gradient);
+}
+
+/* Mobile : 2 cartes par page, comme sur les portfolios de référence */
+@media (max-width: 768px) {
+    .tech-card { flex: 0 0 calc(50% - 5px); }
+}
+
 /* ─── Grille compétences : 2 colonnes (2 × 2) ────────────────────── */
 #competences-grid {
-    grid-template-columns: repeat(2, 1fr);
+    /* minmax(0, 1fr) et non 1fr : sinon la piste défilante des technologies
+       impose sa largeur minimale et déséquilibre les deux colonnes. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: auto;   /* chaque rangée s'adapte à son contenu */
     max-width: 980px;
 }
@@ -800,6 +854,7 @@ h2 .section-emoji { margin-right: 8px; }
 
 /* ─── Cards compétences (avec icône et barre de niveau) ──────────── */
 .skill-card {
+    min-width: 0;               /* évite que son contenu élargisse la colonne */
     background-color: var(--bg-card);
     padding: 28px;
     border-radius: var(--radius-md);

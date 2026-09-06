@@ -390,13 +390,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 `<div class="skill-detail-row"><strong>${d.label} :</strong> ${d.value}</div>`
             ).join('');
 
-            /* Une carte par technologie, avec son logo officiel. */
+            /* Une carte par technologie, avec son logo officiel.
+               Les cartes defilent horizontalement (voir initTechCarrousels). */
             const techHtml = comp.tags
-                ? `<div class="tech-grid">${comp.tags.map(t => `
-                        <div class="tech-card">
-                            <i class="${techIcons[t] || 'fas fa-code'}" aria-hidden="true"></i>
-                            <span>${t}</span>
-                        </div>`).join('')}</div>`
+                ? `<div class="tech-carrousel">
+                       <div class="tech-grid">${comp.tags.map(t => `
+                            <div class="tech-card">
+                                <i class="${techIcons[t] || 'fas fa-code'}" aria-hidden="true"></i>
+                                <span>${t}</span>
+                            </div>`).join('')}</div>
+                       <div class="tech-dots"></div>
+                   </div>`
                 : '';
 
             card.innerHTML = `
@@ -427,6 +431,90 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             `;
             modalsContainer.appendChild(modal);
+        });
+    }
+
+    /* ── Carrousel des technologies ───────────────────────────────
+       Les cartes defilent par pages entieres. Le nombre de cartes
+       visibles est deduit de la largeur reelle, donc le meme code
+       fonctionne sur mobile (2 par page) comme sur desktop (4). */
+    function initTechCarrousels() {
+        document.querySelectorAll('.tech-carrousel').forEach(bloc => {
+            const piste = bloc.querySelector('.tech-grid');
+            const dots  = bloc.querySelector('.tech-dots');
+            if (!piste || !dots) return;
+
+            const cartesParPage = () => {
+                const carte = piste.querySelector('.tech-card');
+                if (!carte || !piste.clientWidth) return 1;
+                const pas = carte.getBoundingClientRect().width + 10;   /* + gap */
+                return Math.max(1, Math.round(piste.clientWidth / pas));
+            };
+
+            const nbPages = () => Math.ceil(piste.children.length / cartesParPage());
+
+            /* On vise la position reelle d'une carte : c'est un point
+               d'accroche valide. Viser un multiple de la largeur ferait
+               revenir le defilement a zero avec scroll-snap mandatory. */
+            const allerPage = (i) => {
+                const cible = piste.children[i * cartesParPage()];
+                if (!cible) return;
+                const gauche = cible.offsetLeft - piste.children[0].offsetLeft;
+                const lisse = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                piste.scrollTo({ left: gauche, behavior: lisse ? 'smooth' : 'instant' });
+            };
+
+            const construireDots = () => {
+                const n = nbPages();
+                dots.innerHTML = '';
+                dots.hidden = n <= 1;
+                if (n <= 1) return;
+                for (let i = 0; i < n; i++) {
+                    const b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'tech-dot' + (i === 0 ? ' active' : '');
+                    b.setAttribute('aria-label', `Technologies, page ${i + 1} sur ${n}`);
+                    b.addEventListener('click', () => allerPage(i));
+                    dots.appendChild(b);
+                }
+            };
+
+            const majDot = () => {
+                const n = dots.children.length;
+                if (!n) return;
+                const i = Math.min(Math.round(piste.scrollLeft / piste.clientWidth), n - 1);
+                [...dots.children].forEach((d, k) => d.classList.toggle('active', k === i));
+            };
+
+            construireDots();
+            piste.addEventListener('scroll', majDot, { passive: true });
+
+            let minuteur;
+            window.addEventListener('resize', () => {
+                clearTimeout(minuteur);
+                minuteur = setTimeout(() => { construireDots(); majDot(); }, 150);
+            });
+
+            /* Glisser-deposer a la souris (le tactile defile nativement) */
+            let actif = false, departX = 0, departScroll = 0;
+            piste.addEventListener('mousedown', e => {
+                actif = true;
+                departX = e.pageX;
+                departScroll = piste.scrollLeft;
+                piste.classList.add('dragging');
+            });
+            piste.addEventListener('mousemove', e => {
+                if (!actif) return;
+                e.preventDefault();
+                piste.scrollLeft = departScroll - (e.pageX - departX);
+            });
+            ['mouseup', 'mouseleave'].forEach(ev =>
+                piste.addEventListener(ev, () => {
+                    if (!actif) return;
+                    actif = false;
+                    piste.classList.remove('dragging');
+                })
+            );
         });
     }
 
@@ -569,6 +657,7 @@ document.addEventListener('DOMContentLoaded', function () {
     buildStats();
     buildProjets();
     buildCompetences();
+    initTechCarrousels();
     buildLangues();
     buildSoftSkills();
     buildExperiences();
