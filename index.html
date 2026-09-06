@@ -71,13 +71,25 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=22">
+    <link rel="stylesheet" href="style.css?v=25">
 </head>
 <body>
 
     <!-- ─── Écran de bienvenue ─────────────────────────────────── -->
+    <!-- Repli sans JavaScript : sans lui, l'ecran d'accueil resterait affiche
+         et tout le contenu (.reveal) resterait a opacity 0, soit une page vide. -->
+    <noscript>
+        <style>
+            #welcome-message      { display: none !important; }
+            #portfolio-content,
+            #portfolio-content.hidden { display: block !important; }
+            .reveal               { opacity: 1 !important; transform: none !important; }
+            .hidden-section       { display: block !important; }
+        </style>
+    </noscript>
+
     <div id="welcome-message">
-        <h1>Bienvenue 👋</h1>
+        <div class="welcome-title">Bienvenue 👋</div>
         <p>Portfolio de RAMAROTSIALONINA Tinasoa Jean Edouard</p>
     </div>
 
@@ -135,7 +147,7 @@
                     </div>
 
                     <!-- Nom -->
-                    <h1 class="hero-name reveal">Tsialonina</h1>
+                    <h1 class="hero-name reveal">Tsialonina<span class="visually-hidden"> — RAMAROTSIALONINA Tinasoa Jean Edouard, développeur fullstack</span></h1>
 
                     <!-- Rôle animé -->
                     <div class="hero-role reveal">
@@ -195,7 +207,7 @@
 
                     <!-- Boutons CTA -->
                     <div class="buttons-container reveal">
-                        <a href="CV_Professionnel.html" class="cta-button primary" target="_blank">
+                        <a href="CV_Professionnel.html" class="cta-button primary" target="_blank" rel="noopener">
                             <i class="fas fa-file-download"></i> Télécharger mon CV
                         </a>
                         <a href="#contact" class="cta-button secondary">
@@ -319,7 +331,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="data.js?v=24" defer></script>
-    <script src="script.js?v=24" defer></script>
+    <script src="data.js?v=25" defer></script>
+    <script src="script.js?v=25" defer></script>
 </body>
 </html>

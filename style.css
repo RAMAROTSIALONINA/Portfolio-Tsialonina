@@ -1,5 +1,7 @@
-/* ─── Google Font ─────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+/* ─── Google Font ─────────────────────────────────────────────────────
+   Poppins est chargee via <link rel="preconnect"> + <link rel="stylesheet">
+   dans index.html. Ne pas la reimporter ici : un @import bloque le rendu
+   et telechargerait la police une seconde fois. */
 
 /* ─── CSS Custom Properties ───────────────────────────────────────── */
 :root {
@@ -77,7 +79,7 @@ body {
     transition: opacity 0.8s ease;
 }
 
-#welcome-message h1 {
+#welcome-message .welcome-title {
     font-size: 2.8rem;
     font-weight: 800;
     color: #ffffff;

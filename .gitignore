@@ -1,0 +1,18 @@
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.bak
+
+# Variables d'environnement et secrets
+.env
+.env.*
+
+# Systeme
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editeurs
+.vscode/
+.idea/
+*.swp
