@@ -605,6 +605,130 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /* ── Carrousel 3D ─────────────────────────────────────────────
+       Les cartes occupent un cylindre : chacune est tournee de i x pas
+       puis poussee de R vers l'avant. La piste tourne pour amener la
+       carte voulue face au lecteur, et recule de R afin que celle-ci
+       garde sa taille naturelle.
+       Flou et opacite suivent l'angle a l'avant, comme sur la reference :
+       flou nul jusqu'a 90 degres, puis 4px x (-cos angle) au-dela. */
+    function initCarrousels3D() {
+        document.querySelectorAll('.carrousel3d').forEach(bloc => {
+            const piste = bloc.querySelector('.carrousel3d-piste');
+            const dots  = bloc.querySelector('.carrousel-dots');
+            if (!piste || !dots) return;
+
+            const cartes = [...piste.children];
+            const n = cartes.length;
+            if (!n) return;
+
+            const PAS = 360 / n;
+            const FLOU_MAX = 4;
+            const DELAI_AUTO = 5000;
+            const animationsReduites = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let index = 0, minuteurAuto = null;
+
+            /* Rayon minimal pour que deux cartes voisines ne se chevauchent pas,
+               plus une marge de respiration. */
+            const rayon = () => {
+                const l = cartes[0].offsetWidth || 340;
+                return Math.round((l / 2) / Math.tan(Math.PI / n)) + 30;
+            };
+
+            const placer = () => {
+                const R = rayon();
+                piste.style.transform = `translateZ(${-R}px) rotateY(${-index * PAS}deg)`;
+
+                cartes.forEach((c, i) => {
+                    c.style.transform = `rotateY(${i * PAS}deg) translateZ(${R}px)`;
+
+                    /* Angle de la carte par rapport a l'avant, ramene dans [-180, 180] */
+                    let a = ((i - index) * PAS) % 360;
+                    if (a >  180) a -= 360;
+                    if (a < -180) a += 360;
+
+                    const cos    = Math.cos(a * Math.PI / 180);
+                    const derriere = Math.abs(a) > 90;
+
+                    c.style.filter  = `blur(${derriere ? (FLOU_MAX * -cos).toFixed(2) : 0}px)`;
+                    c.style.opacity = derriere ? '0.45' : '1';
+                    c.style.zIndex  = String(Math.round(100 + cos * 100));
+                    /* Une carte tournee vers l'arriere est illisible : on la
+                       retire aussi de l'arbre d'accessibilite et du clavier. */
+                    c.setAttribute('aria-hidden', derriere ? 'true' : 'false');
+                    c.querySelectorAll('a, button').forEach(el => {
+                        el.tabIndex = derriere ? -1 : 0;
+                    });
+                });
+
+                [...dots.children].forEach((d, k) => d.classList.toggle('active', k === index));
+            };
+
+            const allerA = (i) => { index = ((i % n) + n) % n; placer(); };
+
+            const arreterAuto = () => { clearInterval(minuteurAuto); minuteurAuto = null; };
+            const demarrerAuto = () => {
+                arreterAuto();
+                if (animationsReduites.matches || n <= 1) return;
+                minuteurAuto = setInterval(() => allerA(index + 1), DELAI_AUTO);
+            };
+
+            /* Pastilles : une par carte */
+            dots.innerHTML = '';
+            dots.hidden = n <= 1;
+            for (let i = 0; i < n; i++) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'carrousel-dot' + (i === 0 ? ' active' : '');
+                b.setAttribute('aria-label', `Diplôme ${i + 1} sur ${n}`);
+                b.addEventListener('click', () => { allerA(i); demarrerAuto(); });
+                dots.appendChild(b);
+            }
+
+            /* Glisser horizontalement pour faire tourner */
+            let actif = false, departX = 0;
+            piste.addEventListener('mousedown', e => {
+                actif = true; departX = e.pageX;
+                piste.classList.add('dragging');
+                arreterAuto();
+            });
+            piste.addEventListener('mousemove', e => {
+                if (!actif) return;
+                e.preventDefault();
+                const delta = e.pageX - departX;
+                if (Math.abs(delta) > 60) {          /* seuil : une carte par glissement */
+                    allerA(index + (delta < 0 ? 1 : -1));
+                    departX = e.pageX;
+                }
+            });
+            ['mouseup', 'mouseleave'].forEach(ev =>
+                piste.addEventListener(ev, () => {
+                    if (!actif) return;
+                    actif = false;
+                    piste.classList.remove('dragging');
+                    if (!bloc.matches(':hover')) demarrerAuto();
+                })
+            );
+
+            bloc.addEventListener('mouseenter', arreterAuto);
+            bloc.addEventListener('mouseleave', demarrerAuto);
+            bloc.addEventListener('focusin',    arreterAuto);
+            bloc.addEventListener('focusout',   demarrerAuto);
+            document.addEventListener('visibilitychange', () => {
+                document.hidden ? arreterAuto() : demarrerAuto();
+            });
+
+            let minuteurResize;
+            window.addEventListener('resize', () => {
+                clearTimeout(minuteurResize);
+                minuteurResize = setTimeout(placer, 150);
+            });
+
+            placer();
+            demarrerAuto();
+        });
+    }
+
     /* ── 6c. Langues ──────────────────────────────────────────── */
     function buildLangues() {
         const grid = document.getElementById('langues-grid');
@@ -753,6 +877,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Apres toutes les constructions : les carrousels ont besoin de leurs
        cartes pour calculer le nombre de pages. */
     initCarrousels();
+    initCarrousels3D();
 
     /* ─── Initialiser APRÈS que les éléments existent ────────────
        • 1ère visite : portfolioContent est hidden (display:none),

@@ -779,9 +779,47 @@ h2 .section-emoji { margin-right: 8px; }
 .projets-piste { gap: 24px; align-items: stretch; text-align: left; }
 .projets-piste > .project-card { flex: 0 0 calc(33.3333% - 16px); }
 
-/* Piste des diplômes : 3 cartes par page */
-.diplomes-piste { gap: 24px; align-items: stretch; text-align: left; }
-.diplomes-piste > .diplome-card { flex: 0 0 calc(33.3333% - 16px); }
+/* ─── Carrousel 3D (diplômes) ────────────────────────────────────────
+   Les cartes sont posées sur un cylindre : rotateY(i × pas) translateZ(R).
+   La piste tourne, et recule de R pour que la carte de devant reste à sa
+   taille naturelle. Flou et opacité sont calculés en JS selon l'angle. */
+.carrousel3d-scene {
+    position: relative;
+    height: 430px;
+    perspective: 1400px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.carrousel3d-piste {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+}
+.carrousel3d-piste.dragging { cursor: grabbing; transition: none; }
+
+.carrousel3d-piste > .diplome-card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 340px;
+    height: 100%;
+    margin-left: -170px;
+    transition: filter 0.6s ease, opacity 0.6s ease;
+    /* transform, filter et opacity sont posés par le JS */
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carrousel3d-piste,
+    .carrousel3d-piste > .diplome-card { transition: none; }
+}
+
+@media (max-width: 480px) {
+    .carrousel3d-scene { height: 460px; perspective: 1000px; }
+    .carrousel3d-piste > .diplome-card { width: 280px; margin-left: -140px; }
+}
 
 /* ─── Carte diplôme / formation ──────────────────────────────────── */
 .diplome-card {
