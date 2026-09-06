@@ -393,13 +393,13 @@ document.addEventListener('DOMContentLoaded', function () {
             /* Une carte par technologie, avec son logo officiel.
                Les cartes defilent horizontalement (voir initTechCarrousels). */
             const techHtml = comp.tags
-                ? `<div class="tech-carrousel">
-                       <div class="tech-grid">${comp.tags.map(t => `
+                ? `<div class="carrousel">
+                       <div class="carrousel-piste tech-piste">${comp.tags.map(t => `
                             <div class="tech-card">
                                 <i class="${techIcons[t] || 'fas fa-code'}" aria-hidden="true"></i>
                                 <span>${t}</span>
                             </div>`).join('')}</div>
-                       <div class="tech-dots"></div>
+                       <div class="carrousel-dots"></div>
                    </div>`
                 : '';
 
@@ -434,24 +434,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ── Carrousel des technologies ───────────────────────────────
-       Les cartes defilent par pages entieres. Le nombre de cartes
-       visibles est deduit de la largeur reelle, donc le meme code
-       fonctionne sur mobile (2 par page) comme sur desktop (4). */
-    function initTechCarrousels() {
-        document.querySelectorAll('.tech-carrousel').forEach(bloc => {
-            const piste = bloc.querySelector('.tech-grid');
-            const dots  = bloc.querySelector('.tech-dots');
+    /* ── Carrousels ───────────────────────────────────────────────
+       Meme mecanique pour les technologies et les projets : les cartes
+       defilent par pages entieres, le nombre visible etant deduit de la
+       largeur reelle. Le filtre des projets pouvant masquer des cartes,
+       on ne compte que celles effectivement affichees. */
+    const carrousels = [];
+
+    function initCarrousels() {
+        document.querySelectorAll('.carrousel').forEach(bloc => {
+            const piste = bloc.querySelector('.carrousel-piste');
+            const dots  = bloc.querySelector('.carrousel-dots');
             if (!piste || !dots) return;
 
+            const visibles = () =>
+                [...piste.children].filter(c => getComputedStyle(c).display !== 'none');
+
+            const ecart = () => parseFloat(getComputedStyle(piste).columnGap) || 0;
+
             const cartesParPage = () => {
-                const carte = piste.querySelector('.tech-card');
-                if (!carte || !piste.clientWidth) return 1;
-                const pas = carte.getBoundingClientRect().width + 10;   /* + gap */
+                const liste = visibles();
+                if (!liste.length || !piste.clientWidth) return 1;
+                const pas = liste[0].getBoundingClientRect().width + ecart();
                 return Math.max(1, Math.round(piste.clientWidth / pas));
             };
 
-            const nbPages = () => Math.ceil(piste.children.length / cartesParPage());
+            const nbPages = () => Math.ceil(visibles().length / cartesParPage());
 
             const marquerDot = (i) => {
                 [...dots.children].forEach((d, k) => d.classList.toggle('active', k === i));
@@ -461,9 +469,10 @@ document.addEventListener('DOMContentLoaded', function () {
                d'accroche valide. Viser un multiple de la largeur ferait
                revenir le defilement a zero avec scroll-snap mandatory. */
             const allerPage = (i) => {
-                const cible = piste.children[i * cartesParPage()];
-                if (!cible) return;
-                const gauche = cible.offsetLeft - piste.children[0].offsetLeft;
+                const liste = visibles();
+                const cible = liste[i * cartesParPage()];
+                if (!cible || !liste.length) return;
+                const gauche = cible.offsetLeft - liste[0].offsetLeft;
                 const lisse = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 piste.scrollTo({ left: gauche, behavior: lisse ? 'smooth' : 'instant' });
                 /* On marque la pastille tout de suite : l'evenement scroll
@@ -479,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let minuteurAuto = null;
 
             const pageCourante = () => {
-                const cartes = [...piste.children];
+                const cartes = visibles();
                 if (!cartes.length) return 0;
                 const origine = cartes[0].offsetLeft;
                 let plusProche = 0, ecartMin = Infinity;
@@ -527,8 +536,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < n; i++) {
                     const b = document.createElement('button');
                     b.type = 'button';
-                    b.className = 'tech-dot' + (i === 0 ? ' active' : '');
-                    b.setAttribute('aria-label', `Technologies, page ${i + 1} sur ${n}`);
+                    b.className = 'carrousel-dot' + (i === 0 ? ' active' : '');
+                    b.setAttribute('aria-label', `Page ${i + 1} sur ${n}`);
                     /* Relance le compte a rebours : l'utilisateur vient de
                        choisir une page, il doit avoir 5 s pour la lire. */
                     b.addEventListener('click', () => { allerPage(i); demarrerAuto(); });
@@ -551,6 +560,15 @@ document.addEventListener('DOMContentLoaded', function () {
             construireDots();
             demarrerAuto();
             piste.addEventListener('scroll', majDot, { passive: true });
+
+            /* Le filtre des projets masque des cartes : il faut alors
+               recalculer les pages et repartir du debut. */
+            carrousels.push(() => {
+                piste.scrollTo({ left: 0, behavior: 'instant' });
+                construireDots();
+                majDot();
+                demarrerAuto();
+            });
 
             let minuteurResize;
             window.addEventListener('resize', () => {
@@ -726,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function () {
     buildStats();
     buildProjets();
     buildCompetences();
-    initTechCarrousels();
+    initCarrousels();
     buildLangues();
     buildSoftSkills();
     buildExperiences();
@@ -835,6 +853,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.classList.toggle('visible', show);
             });
             fitProjectTags();
+            carrousels.forEach(rafraichir => rafraichir());
         });
     });
 

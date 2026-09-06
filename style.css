@@ -747,11 +747,10 @@ h2 .section-emoji { margin-right: 8px; }
 .project-card.visible { display: flex; animation: fadeUp 0.45s ease both; }
 
 /* ─── Cartes technologies (logo + nom) ───────────────────────────── */
-/* Piste défilante : 4 cartes visibles, les suivantes au glissement */
-.tech-grid {
+/* ─── Carrousel générique (technologies et projets) ──────────────── */
+.carrousel-piste {
     display: flex;
-    min-width: 0;               /* autorise la piste à rétrécir dans sa carte */
-    gap: 10px;
+    min-width: 0;               /* autorise la piste à rétrécir dans son parent */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -761,17 +760,27 @@ h2 .section-emoji { margin-right: 8px; }
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-.tech-grid::-webkit-scrollbar { display: none; }
+.carrousel-piste::-webkit-scrollbar { display: none; }
 
-.tech-grid.dragging {
+.carrousel-piste.dragging {
     cursor: grabbing;
     scroll-behavior: auto;      /* suit le curseur sans lissage */
     scroll-snap-type: none;
 }
 
+.carrousel-piste > * { scroll-snap-align: start; }
+
+/* Piste des technologies : 4 cartes par page */
+.tech-piste { gap: 10px; }
+
+/* Piste des projets : 3 cartes par page.
+   text-align hérité de .content-section (centré) : on le rétablit à gauche,
+   comme le faisait l'ancienne grille. */
+.projets-piste { gap: 24px; align-items: stretch; text-align: left; }
+.projets-piste > .project-card { flex: 0 0 calc(33.3333% - 16px); }
+
 .tech-card {
     flex: 0 0 calc(25% - 7.5px);   /* 4 par page (3 gaps de 10px répartis) */
-    scroll-snap-align: start;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -808,7 +817,7 @@ h2 .section-emoji { margin-right: 8px; }
 }
 
 /* Pastilles de pagination */
-.tech-dots {
+.carrousel-dots {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -816,7 +825,7 @@ h2 .section-emoji { margin-right: 8px; }
     margin-top: 12px;
 }
 
-.tech-dot {
+.carrousel-dot {
     width: 7px;
     height: 7px;
     padding: 0;
@@ -827,17 +836,23 @@ h2 .section-emoji { margin-right: 8px; }
     transition: width var(--transition), background-color var(--transition);
 }
 
-.tech-dot:hover { background-color: var(--text-muted); }
+.carrousel-dot:hover { background-color: var(--text-muted); }
 
-.tech-dot.active {
+.carrousel-dot.active {
     width: 20px;
     border-radius: 4px;
     background: var(--gradient);
 }
 
-/* Mobile : 2 cartes par page, comme sur les portfolios de référence */
+/* Tablette : 2 projets par page */
+@media (max-width: 1024px) {
+    .projets-piste > .project-card { flex: 0 0 calc(50% - 12px); }
+}
+
+/* Mobile : 2 technologies et 1 projet par page */
 @media (max-width: 768px) {
     .tech-card { flex: 0 0 calc(50% - 5px); }
+    .projets-piste > .project-card { flex: 0 0 100%; }
 }
 
 /* ─── Grille compétences : 2 colonnes (2 × 2) ────────────────────── */
