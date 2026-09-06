@@ -98,6 +98,7 @@ const portfolioData = {
             id: "projet-8",
             titre: "SGCI — Systeme de Gestion et Controle Integre",
             annee: "2026", role: "Fullstack", statut: "developpement",
+            image: "images/sgci.webp",
             description: "Plateforme de digitalisation de la chaine d'approvisionnement pour la restauration multi-sites (Antananarivo) realisee en 2026 : inventaires par seuil, stocks centraux, validation financiere et audit, sur une architecture modulaire NestJS + Prisma + PostgreSQL.",
             technologies: ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "BullMQ", "Redis", "React", "Vite"],
             stack: [
@@ -124,6 +125,7 @@ const portfolioData = {
             id: "projet-10",
             titre: "Fiche Technique BOGOTA — Gestion de recettes & couts",
             annee: "2026", role: "Fullstack", statut: "production",
+            image: "images/fiche-technique.webp",
             description: "Logiciel de gestion des fiches techniques de cuisine pour le restaurant BOGOTA : calcul automatique des couts de revient, recalcul en cascade des prix et suivi de la rentabilite de chaque recette. Application locale, utilisable sans connexion internet.",
             technologies: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "JavaScript", "PyMuPDF", "openpyxl", "PyInstaller"],
             stack: [
