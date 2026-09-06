@@ -453,6 +453,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const nbPages = () => Math.ceil(piste.children.length / cartesParPage());
 
+            const marquerDot = (i) => {
+                [...dots.children].forEach((d, k) => d.classList.toggle('active', k === i));
+            };
+
             /* On vise la position reelle d'une carte : c'est un point
                d'accroche valide. Viser un multiple de la largeur ferait
                revenir le defilement a zero avec scroll-snap mandatory. */
@@ -462,7 +466,58 @@ document.addEventListener('DOMContentLoaded', function () {
                 const gauche = cible.offsetLeft - piste.children[0].offsetLeft;
                 const lisse = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 piste.scrollTo({ left: gauche, behavior: lisse ? 'smooth' : 'instant' });
+                /* On marque la pastille tout de suite : l'evenement scroll
+                   peut tarder, voire ne pas arriver selon le contexte. */
+                marquerDot(i);
             };
+
+            /* ── Defilement automatique (5 s) ──────────────────────
+               Il se met en pause des que l'utilisateur interagit ou
+               survole le bloc, sinon on lui arracherait la lecture. */
+            const DELAI_AUTO = 5000;
+            const animationsReduites = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let minuteurAuto = null;
+
+            const pageCourante = () => {
+                const cartes = [...piste.children];
+                if (!cartes.length) return 0;
+                const origine = cartes[0].offsetLeft;
+                let plusProche = 0, ecartMin = Infinity;
+                cartes.forEach((c, k) => {
+                    const ecart = Math.abs((c.offsetLeft - origine) - piste.scrollLeft);
+                    if (ecart < ecartMin) { ecartMin = ecart; plusProche = k; }
+                });
+                return Math.floor(plusProche / cartesParPage());
+            };
+
+            const arreterAuto = () => {
+                clearInterval(minuteurAuto);
+                minuteurAuto = null;
+            };
+
+            const demarrerAuto = () => {
+                arreterAuto();
+                /* Pas d'animation imposee si l'utilisateur n'en veut pas,
+                   et rien a faire s'il n'y a qu'une seule page. */
+                if (animationsReduites.matches || nbPages() <= 1) return;
+                minuteurAuto = setInterval(() => {
+                    /* La derniere page vise une position que le navigateur
+                       ramene au maximum defilable : sans ce test de fin, le
+                       carrousel resterait bloque et ne reviendrait jamais
+                       au debut. */
+                    const enFin = piste.scrollLeft >= piste.scrollWidth - piste.clientWidth - 2;
+                    allerPage(enFin ? 0 : pageCourante() + 1);
+                }, DELAI_AUTO);
+            };
+
+            bloc.addEventListener('mouseenter', arreterAuto);
+            bloc.addEventListener('mouseleave', demarrerAuto);
+            bloc.addEventListener('focusin',    arreterAuto);
+            bloc.addEventListener('focusout',   demarrerAuto);
+            document.addEventListener('visibilitychange', () => {
+                document.hidden ? arreterAuto() : demarrerAuto();
+            });
+            animationsReduites.addEventListener('change', demarrerAuto);
 
             const construireDots = () => {
                 const n = nbPages();
@@ -474,7 +529,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     b.type = 'button';
                     b.className = 'tech-dot' + (i === 0 ? ' active' : '');
                     b.setAttribute('aria-label', `Technologies, page ${i + 1} sur ${n}`);
-                    b.addEventListener('click', () => allerPage(i));
+                    /* Relance le compte a rebours : l'utilisateur vient de
+                       choisir une page, il doit avoir 5 s pour la lire. */
+                    b.addEventListener('click', () => { allerPage(i); demarrerAuto(); });
                     dots.appendChild(b);
                 }
             };
@@ -482,17 +539,25 @@ document.addEventListener('DOMContentLoaded', function () {
             const majDot = () => {
                 const n = dots.children.length;
                 if (!n) return;
-                const i = Math.min(Math.round(piste.scrollLeft / piste.clientWidth), n - 1);
-                [...dots.children].forEach((d, k) => d.classList.toggle('active', k === i));
+                /* En butee a droite, on affiche la derniere page : la position
+                   maximale ne correspond pas a un multiple exact de la largeur. */
+                const enFin = piste.scrollLeft >= piste.scrollWidth - piste.clientWidth - 2;
+                const i = enFin
+                    ? n - 1
+                    : Math.min(Math.round(piste.scrollLeft / piste.clientWidth), n - 1);
+                marquerDot(i);
             };
 
             construireDots();
+            demarrerAuto();
             piste.addEventListener('scroll', majDot, { passive: true });
 
-            let minuteur;
+            let minuteurResize;
             window.addEventListener('resize', () => {
-                clearTimeout(minuteur);
-                minuteur = setTimeout(() => { construireDots(); majDot(); }, 150);
+                clearTimeout(minuteurResize);
+                minuteurResize = setTimeout(() => {
+                    construireDots(); majDot(); demarrerAuto();
+                }, 150);
             });
 
             /* Glisser-deposer a la souris (le tactile defile nativement) */
@@ -502,6 +567,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 departX = e.pageX;
                 departScroll = piste.scrollLeft;
                 piste.classList.add('dragging');
+                arreterAuto();
             });
             piste.addEventListener('mousemove', e => {
                 if (!actif) return;
@@ -513,6 +579,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (!actif) return;
                     actif = false;
                     piste.classList.remove('dragging');
+                    /* Le survol du bloc relancera le minuteur en sortant ;
+                       on le relance ici pour le cas d'un relachement hors piste. */
+                    if (!bloc.matches(':hover')) demarrerAuto();
                 })
             );
         });
