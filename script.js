@@ -684,21 +684,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         portfolioData.diplomes.forEach((d) => {
             const item = document.createElement('div');
-            item.className = 'timeline-item';
+            item.className = 'diplome-card reveal';
             const listHtml = Array.isArray(d.details)
-                ? '<ul class="timeline-details">' +
+                ? '<ul class="diplome-details">' +
                   d.details.map(x => `<li><strong>${x.label} :</strong> ${x.value}</li>`).join('') +
                   '</ul>' : '';
+            /* Formation certifiante plutot que diplome academique */
+            const icone = /formation/i.test(d.titre) ? 'fas fa-certificate' : 'fas fa-graduation-cap';
             item.innerHTML = `
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-year">${d.annee}</div>
-                    <div class="timeline-title">${d.titre}</div>
-                    <div class="timeline-school">
-                        <i class="fas fa-university" style="margin-right:5px;color:var(--primary)"></i>${d.etablissement}
-                    </div>
-                    ${listHtml}
+                <div class="diplome-icone"><i class="${icone}"></i></div>
+                <div class="diplome-annee">${d.annee}</div>
+                <h3 class="diplome-titre">${d.titre}</h3>
+                <div class="diplome-ecole">
+                    <i class="fas fa-university"></i><span>${d.etablissement}</span>
                 </div>
+                ${listHtml}
             `;
             timeline.appendChild(item);
         });
@@ -744,12 +744,15 @@ document.addEventListener('DOMContentLoaded', function () {
     buildStats();
     buildProjets();
     buildCompetences();
-    initCarrousels();
     buildLangues();
     buildSoftSkills();
     buildExperiences();
     buildDiplomes();
     buildContact();
+
+    /* Apres toutes les constructions : les carrousels ont besoin de leurs
+       cartes pour calculer le nombre de pages. */
+    initCarrousels();
 
     /* ─── Initialiser APRÈS que les éléments existent ────────────
        • 1ère visite : portfolioContent est hidden (display:none),

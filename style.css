@@ -779,6 +779,80 @@ h2 .section-emoji { margin-right: 8px; }
 .projets-piste { gap: 24px; align-items: stretch; text-align: left; }
 .projets-piste > .project-card { flex: 0 0 calc(33.3333% - 16px); }
 
+/* Piste des diplômes : 3 cartes par page */
+.diplomes-piste { gap: 24px; align-items: stretch; text-align: left; }
+.diplomes-piste > .diplome-card { flex: 0 0 calc(33.3333% - 16px); }
+
+/* ─── Carte diplôme / formation ──────────────────────────────────── */
+.diplome-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 26px 24px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition),
+                border-color var(--transition);
+}
+
+.diplome-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.diplome-icone {
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--primary);
+}
+
+.diplome-annee {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--primary);
+    background-color: var(--primary-glow);
+    padding: 3px 11px;
+    border-radius: 20px;
+}
+
+.diplome-titre {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+    margin: 0;
+}
+
+.diplome-ecole {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+.diplome-ecole i { color: var(--primary); margin-top: 3px; }
+
+.diplome-details {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: auto;          /* colle le bloc en bas, cartes alignées */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.diplome-details strong { color: var(--text); font-weight: 600; }
+
 .tech-card {
     flex: 0 0 calc(25% - 7.5px);   /* 4 par page (3 gaps de 10px répartis) */
     user-select: none;
@@ -844,15 +918,17 @@ h2 .section-emoji { margin-right: 8px; }
     background: var(--gradient);
 }
 
-/* Tablette : 2 projets par page */
+/* Tablette : 2 projets et 2 diplômes par page */
 @media (max-width: 1024px) {
-    .projets-piste > .project-card { flex: 0 0 calc(50% - 12px); }
+    .projets-piste  > .project-card { flex: 0 0 calc(50% - 12px); }
+    .diplomes-piste > .diplome-card { flex: 0 0 calc(50% - 12px); }
 }
 
-/* Mobile : 2 technologies et 1 projet par page */
+/* Mobile : 2 technologies, 1 projet et 1 diplôme par page */
 @media (max-width: 768px) {
     .tech-card { flex: 0 0 calc(50% - 5px); }
-    .projets-piste > .project-card { flex: 0 0 100%; }
+    .projets-piste  > .project-card { flex: 0 0 100%; }
+    .diplomes-piste > .diplome-card { flex: 0 0 100%; }
 }
 
 /* ─── Grille compétences : 2 colonnes (2 × 2) ────────────────────── */
