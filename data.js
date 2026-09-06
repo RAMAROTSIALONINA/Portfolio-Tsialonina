@@ -44,6 +44,7 @@ const portfolioData = {
             id: "projet-6",
             titre: "Plateforme TELEX — Television Etudiante",
             annee: "2025", role: "Fullstack", statut: "en-ligne",
+            image: "images/telex.webp",
             url: "http://telex.mg/",
             description: "Plateforme web complete pour une television etudiante realisee en 2025 : gestion de programmes TV, module spirituel Baume de la Foi, interface multilingue FR/EN, systeme admin avec roles, upload medias et conformite RGPD.",
             technologies: ["Node.js", "Express.js", "EJS", "SQLite3", "Bootstrap 5", "JavaScript", "Multer", "JWT"],
@@ -71,6 +72,7 @@ const portfolioData = {
             id: "projet-7",
             titre: "Bourbon Morelli — Plateforme E-Commerce Luxe",
             annee: "2026", role: "Fullstack", statut: "en-ligne",
+            image: "images/bourbon-morelli.webp",
             url: "https://bourbonmorelli.com/",
             description: "Plateforme e-commerce haut de gamme valorisant l'artisanat malgache et l'elegance francaise realisee en 2026, en ligne sur bourbonmorelli.com. Confection sur mesure, design Made in Madagascar et experience utilisateur premium.",
             technologies: ["React", "JavaScript", "Node.js", "Express.js", "MySQL", "TailwindCSS", "JWT", "Webpack"],
@@ -150,6 +152,7 @@ const portfolioData = {
             id: "projet-9",
             titre: "ACTIPASS — Plateforme de Certification & Verification",
             annee: "2026", role: "CTO", statut: "conception",
+            image: "images/actipass.webp",
             description: "Infrastructure nationale de confiance pour la digitalisation, la verification et la certification securisee des informations academiques, administratives et professionnelles (lutte contre la fraude documentaire). Intervention en tant que CTO : direction technique, conception, documentation et architecture fonctionnelle. Developpement realise par l'equipe Pulse, hebergement assure par Stellarix.",
             technologies: ["CTO", "UI/UX", "Architecture", "Flow Diagrams", "MOA / MVP"],
             fonctionnalites: [

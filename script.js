@@ -262,7 +262,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const statusBadge = st
                 ? `<span class="project-status ${st.cls}"><span class="st-dot"></span>${st.label}</span>` : '';
             const meta = (projet.annee || projet.role)
-                ? `<div class="project-meta">${[projet.annee, projet.role].filter(Boolean).join(' · ')}</div>` : '';
+                ? `<div class="project-meta"><i class="far fa-calendar"></i>${[projet.annee, projet.role].filter(Boolean).join(' · ')}</div>`
+                : '';
 
             /* Tous les tags sont rendus ; fitProjectTags() masque ceux qui
                dépassent la première ligne et met à jour la puce « +N ». */
@@ -278,8 +279,11 @@ document.addEventListener('DOMContentLoaded', function () {
             card.dataset.technologies = projet.technologies.join(',');
             card.style.transitionDelay = `${idx * 60}ms`;
             card.innerHTML = `
-                <div class="project-cover">
-                    <i class="${icon}"></i>
+                <div class="project-cover${projet.image ? ' has-image' : ''}">
+                    ${projet.image
+                        ? `<img src="${projet.image}" alt="Aperçu de ${projet.titre}"
+                                loading="lazy" decoding="async" width="720" height="405">`
+                        : `<i class="${icon}"></i>`}
                     ${statusBadge}
                 </div>
                 <div class="project-body">
