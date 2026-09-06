@@ -480,10 +480,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 marquerDot(i);
             };
 
-            /* ── Defilement automatique (5 s) ──────────────────────
+            /* ── Defilement automatique (3 s) ──────────────────────
                Il se met en pause des que l'utilisateur interagit ou
                survole le bloc, sinon on lui arracherait la lecture. */
-            const DELAI_AUTO = 5000;
+            const DELAI_AUTO = 3000;
             const animationsReduites = window.matchMedia('(prefers-reduced-motion: reduce)');
             let minuteurAuto = null;
 
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     b.className = 'carrousel-dot' + (i === 0 ? ' active' : '');
                     b.setAttribute('aria-label', `Page ${i + 1} sur ${n}`);
                     /* Relance le compte a rebours : l'utilisateur vient de
-                       choisir une page, il doit avoir 5 s pour la lire. */
+                       choisir une page, il doit avoir le delai complet. */
                     b.addEventListener('click', () => { allerPage(i); demarrerAuto(); });
                     dots.appendChild(b);
                 }
@@ -624,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const PAS = 360 / n;
             const FLOU_MAX = 4;
-            const DELAI_AUTO = 5000;
+            const DELAI_AUTO = 3000;
             const animationsReduites = window.matchMedia('(prefers-reduced-motion: reduce)');
             let index = 0, minuteurAuto = null;
 
