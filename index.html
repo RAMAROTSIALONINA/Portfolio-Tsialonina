@@ -40,8 +40,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           referrerpolicy="no-referrer">
 
-    <!-- EmailJS : charger uniquement si les cles sont configurees dans script.js -->
-    <!-- <script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js" defer></script> -->
+    <!-- Formulaire de contact : Web3Forms (appel fetch direct, aucune
+         librairie a charger). La cle d'acces se configure dans script.js. -->
 
     <!-- JSON-LD — Données structurées Google -->
     <script type="application/ld+json">
@@ -71,7 +71,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=25">
+    <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
 
@@ -299,6 +299,15 @@
                         <label for="form-message"><i class="fas fa-comment-alt"></i> Message</label>
                         <textarea id="form-message" rows="5" placeholder="Votre message..." required></textarea>
                     </div>
+                    <!-- Piège à robots (Web3Forms) : invisible et hors du parcours
+                         clavier ; seuls les robots le cochent, ce qui fait
+                         rejeter l'envoi côté serveur. -->
+                    <label class="visually-hidden" for="form-botcheck" aria-hidden="true">
+                        Ne pas remplir ce champ
+                    </label>
+                    <input type="checkbox" id="form-botcheck" name="botcheck"
+                           class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
                     <div id="form-feedback" class="form-feedback"></div>
                     <button type="submit" class="cta-button primary form-submit-btn">
                         <i class="fas fa-paper-plane"></i> Envoyer le message
@@ -331,7 +340,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="data.js?v=25" defer></script>
-    <script src="script.js?v=25" defer></script>
+    <script src="data.js?v=26" defer></script>
+    <script src="script.js?v=26" defer></script>
 </body>
 </html>

@@ -1517,11 +1517,41 @@ body.dark-theme .availability-badge {
     font-style: italic;
 }
 
+/* Rangée d'actions : ouvrir la messagerie / copier l'adresse / WhatsApp */
+.mail-popup-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.mail-popup-actions .cta-button {
+    font-size: 0.85rem;
+    padding: 9px 16px;
+}
+
+/* Bouton "Fermer" discret : c'est l'action secondaire */
 .mail-popup-close {
-    margin-top: 20px;
+    margin-top: 16px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background-color var(--transition);
+}
+
+.mail-popup-close:hover {
+    color: var(--text);
+    background-color: var(--primary-glow);
 }
 
 @keyframes popIn {

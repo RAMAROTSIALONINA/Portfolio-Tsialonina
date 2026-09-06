@@ -695,25 +695,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* ══════════════════════════════════════════════════════════════
-       10. FORMULAIRE DE CONTACT — EmailJS
+       10. FORMULAIRE DE CONTACT — Web3Forms
        ┌─────────────────────────────────────────────────────────┐
-       │  CONFIGURATION EMAILJS (à remplir une seule fois) :     │
-       │  1. Créer un compte gratuit sur https://emailjs.com     │
-       │  2. Ajouter un service email (Gmail recommandé)         │
-       │  3. Créer un template avec les variables :              │
-       │     {{from_name}}, {{from_email}},                      │
-       │     {{subject}}, {{message}}                            │
-       │  4. Remplacer les 3 valeurs ci-dessous                  │
+       │  CONFIGURATION (une seule fois, ~1 minute) :            │
+       │  1. Aller sur https://web3forms.com                     │
+       │  2. Saisir tsialoninajeanedouard@gmail.com              │
+       │  3. La clé d'accès arrive par email                     │
+       │  4. La coller ci-dessous à la place du texte repère     │
+       │  Aucun compte à créer — 250 envois/mois gratuits.       │
        └─────────────────────────────────────────────────────────┘
+       La clé est publique par conception : elle n'autorise que l'envoi
+       vers l'adresse email qui l'a demandée. Elle peut donc figurer
+       dans le code source sans risque.
     ══════════════════════════════════════════════════════════════ */
-    const EMAILJS_PUBLIC_KEY  = 'VOTRE_PUBLIC_KEY';   // ← remplacer
-    const EMAILJS_SERVICE_ID  = 'VOTRE_SERVICE_ID';   // ← remplacer
-    const EMAILJS_TEMPLATE_ID = 'VOTRE_TEMPLATE_ID';  // ← remplacer
-
-    /* Initialisation EmailJS */
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
+    const WEB3FORMS_ACCESS_KEY = 'VOTRE_ACCESS_KEY';   // ← remplacer
+    const CONTACT_EMAIL        = 'tsialoninajeanedouard@gmail.com';
+    const formEnvoiActif       = WEB3FORMS_ACCESS_KEY !== 'VOTRE_ACCESS_KEY'
+                                 && WEB3FORMS_ACCESS_KEY.length > 10;
 
     const form     = document.getElementById('contact-form');
     const feedback = document.getElementById('form-feedback');
@@ -736,36 +734,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 showFeedback('⚠️ Adresse email invalide.', 'error'); return;
             }
 
+            /* Tant que la clé n'est pas configurée, on ne prétend pas
+               envoyer : on propose une alternative qui fonctionne. */
+            if (!formEnvoiActif) {
+                showMailPopup(name, subject, message, email);
+                return;
+            }
+
             /* État chargement */
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours…';
 
-            /* Envoi via EmailJS si configuré, sinon fallback mailto */
-            if (EMAILJS_PUBLIC_KEY !== 'VOTRE_PUBLIC_KEY' && typeof emailjs !== 'undefined') {
-                try {
-                    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                        from_name:  name,
-                        from_email: email,
-                        subject:    subject,
+            try {
+                const reponse = await fetch('https://api.web3forms.com/submit', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_ACCESS_KEY,
+                        name:       name,
+                        email:      email,
+                        subject:    `[Portfolio] ${subject}`,
                         message:    message,
-                        to_email:   'tsialoninajeanedouard@gmail.com'
-                    });
-                    showFeedback('✅ Message envoyé avec succès ! Je vous répondrai rapidement.', 'success');
-                    form.reset();
-                } catch (err) {
-                    showFeedback('❌ Échec de l\'envoi. Contactez-moi directement par email.', 'error');
-                }
-            } else {
-                /* Fallback mailto si EmailJS non configuré */
-                const body   = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
-                const mailto = `mailto:tsialoninajeanedouard@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                window.open(mailto);
-                form.reset();
-                showMailPopup(name);
-            }
+                        from_name:  'Portfolio RAMAROTSIALONINA',
+                        replyto:    email,
+                        botcheck:   document.getElementById('form-botcheck')?.checked || false
+                    })
+                });
+                const resultat = await reponse.json();
 
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+                if (reponse.ok && resultat.success) {
+                    showFeedback('✅ Message envoyé ! Je vous réponds au plus vite.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error(resultat.message || `HTTP ${reponse.status}`);
+                }
+            } catch (err) {
+                console.error('Web3Forms :', err);
+                showFeedback(
+                    `❌ L'envoi a échoué. Écrivez-moi directement : ${CONTACT_EMAIL}`,
+                    'error'
+                );
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+            }
         });
     }
 
@@ -775,32 +787,65 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => { feedback.className = 'form-feedback'; feedback.textContent = ''; }, 6000);
     }
 
-    function showMailPopup(senderName) {
-        /* Supprimer un éventuel popup déjà ouvert */
+    /* Affiché uniquement tant que la clé Web3Forms n'est pas configurée.
+       On ne dit jamais "message envoyé" : rien n'a été transmis. On donne
+       une alternative qui fonctionne vraiment (lien mailto cliquable,
+       copie de l'adresse, WhatsApp). */
+    function showMailPopup(senderName, subject, message, senderEmail) {
         const existing = document.getElementById('mail-sent-popup');
         if (existing) existing.remove();
 
+        const corps  = `Nom : ${senderName}\nEmail : ${senderEmail}\n\n${message}`;
+        const mailto = `mailto:${CONTACT_EMAIL}`
+                     + `?subject=${encodeURIComponent(subject)}`
+                     + `&body=${encodeURIComponent(corps)}`;
+
         const overlay = document.createElement('div');
         overlay.id = 'mail-sent-popup';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Finaliser l\'envoi du message');
         overlay.innerHTML = `
             <div class="mail-popup-box">
-                <div class="mail-popup-icon"><i class="fas fa-check-circle"></i></div>
-                <h3>Message envoyé !</h3>
-                <p>Merci <strong>${senderName}</strong>, votre client email s'est ouvert avec votre message pré-rempli.</p>
-                <p class="mail-popup-sub">Cliquez sur <em>Envoyer</em> dans votre application email pour finaliser.</p>
-                <button class="mail-popup-close cta-button primary" onclick="document.getElementById('mail-sent-popup').remove()">
+                <div class="mail-popup-icon"><i class="fas fa-paper-plane"></i></div>
+                <h3>Une dernière étape</h3>
+                <p>Merci <strong>${senderName}</strong> — il ne reste qu'à m'envoyer votre message.</p>
+                <p class="mail-popup-sub">Ouvrez votre messagerie avec le message déjà rempli, ou copiez mon adresse.</p>
+                <div class="mail-popup-actions">
+                    <a class="cta-button primary" href="${mailto}">
+                        <i class="fas fa-envelope"></i> Ouvrir ma messagerie
+                    </a>
+                    <button type="button" class="cta-button" id="mail-popup-copy">
+                        <i class="fas fa-copy"></i> Copier l'adresse
+                    </button>
+                    <a class="cta-button" href="https://wa.me/261331933390" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+                <button class="mail-popup-close" id="mail-popup-dismiss" aria-label="Fermer">
                     <i class="fas fa-times"></i> Fermer
                 </button>
             </div>`;
         document.body.appendChild(overlay);
 
-        /* Fermer en cliquant sur le fond */
-        overlay.addEventListener('click', function (e) {
+        const copyBtn = overlay.querySelector('#mail-popup-copy');
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(CONTACT_EMAIL);
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Adresse copiée';
+            } catch {
+                copyBtn.innerHTML = `<i class="fas fa-envelope"></i> ${CONTACT_EMAIL}`;
+            }
+        });
+
+        overlay.querySelector('#mail-popup-dismiss')
+               .addEventListener('click', () => overlay.remove());
+
+        overlay.addEventListener('click', (e) => {
             if (e.target === overlay) overlay.remove();
         });
 
-        /* Fermer automatiquement après 8 secondes */
-        setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 8000);
+        /* Pas de fermeture automatique : l'utilisateur doit pouvoir agir. */
     }
 
     /* ══════════════════════════════════════════════════════════════
