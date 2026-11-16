@@ -684,6 +684,7 @@ h2 .section-emoji { margin-right: 8px; }
     font-size: 0.82rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
+    text-decoration: none;
     transition: all var(--transition);
 }
 
