@@ -170,8 +170,9 @@ const portfolioData = {
         {
             id: "projet-11",
             titre: "Gestion des Materiels — Parc, stocks & tracabilite",
-            annee: "2026", role: "Fullstack", statut: "developpement",
+            annee: "2026", role: "Fullstack", statut: "en-ligne",
             image: "images/gestion-materiels.webp",
+            url: "https://gestion-materiels.onrender.com/",
             description: "Application web de suivi du parc de materiels et des stocks d'articles d'une societe : mouvements, transferts entre sites, remises aux employes, etats et reparations, avec etiquettes code-barres, tableau de bord et rapports PDF / CSV.",
             technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "HTML5", "CSS3", "Neon", "Render"],
             stack: [
