@@ -263,6 +263,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'BullMQ':                   'fas fa-list-check',
         'Render':                   'fas fa-cloud-arrow-up',
         'Neon':                     'fas fa-bolt',
+        'ManyChat':                 'fas fa-comments',
+        'Messenger':                'fab fa-facebook-messenger',
     };
 
     const skillIcons = {

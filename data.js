@@ -235,9 +235,10 @@ const portfolioData = {
             details: [
                 { label: "Competences",    value: "Calcul Stochastique (R), Operateur de saisie, Conception graphique (Photoshop), OCR, Maintenance informatique" },
                 { label: "Build & Outils", value: "Vite, BullMQ" },
-                { label: "Hebergement",    value: "Render, Neon, GitHub Pages" }
+                { label: "Hebergement",    value: "Render, Neon, GitHub Pages" },
+                { label: "Chatbots IA",    value: "ManyChat (Messenger) : agent IA, detection d'intention d'achat, transfert a l'equipe" }
             ],
-            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ", "Render", "Neon"]
+            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ", "Render", "Neon", "ManyChat", "Messenger"]
         }
     ],
     experiences: [
@@ -357,6 +358,23 @@ const portfolioData = {
                 "Double export PDF : fiche direction avec les couts, fiche cuisine sans donnees sensibles",
                 "Import des anciennes fiches Excel et interface SPA en JavaScript sans framework",
                 "Distribution sous forme d'installateur Windows autonome (PyInstaller + Inno Setup)"
+            ]
+        },
+        {
+            id: "exp-9",
+            poste: "Automatisation IA — Chatbot Messenger",
+            entreprise: "ManyChat — Automatisation du service client",
+            periode: "2026",
+            type: "Projet professionnel",
+            lieu: "Antananarivo, Madagascar",
+            description: "Mise en place d'un chatbot IA sur Messenger avec ManyChat pour automatiser le service client : reponses 24h/24, detection de l'intention d'achat et transfert des conversations a l'equipe.",
+            technologies: ["ManyChat", "Messenger", "Agent IA", "Automatisation"],
+            accomplissements: [
+                "Connexion de la Page Facebook a ManyChat et reponses automatiques par mots-cles",
+                "Configuration de l'agent IA (objectif et contexte metier) pour repondre aux questions courantes",
+                "Detection de l'intention d'achat, etiquetage automatique du contact et assignation de la conversation a un membre de l'equipe",
+                "Redaction de guides pas a pas : de la Page Facebook a l'agent IA, transfert de l'IA vers l'admin",
+                "Presentation d'aide a la decision : comparatif des plans, periode d'essai et points a confirmer"
             ]
         },
         {

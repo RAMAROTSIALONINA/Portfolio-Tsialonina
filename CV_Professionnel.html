@@ -1237,7 +1237,8 @@
             .profile-info h1, .profile-title,
             .section-title, .timeline-date, .timeline-title,
             .project-title, .chart-percentage, .chart-title,
-            .stat-bar-value, .dot-score, .formation-item strong {
+            .stat-bar-value, .dot-score, .formation-item strong,
+            .formation-year, .project-year {
                 text-shadow: none !important;
             }
 
@@ -1336,10 +1337,22 @@
                 margin-left: -10px;
                 margin-bottom: 1px;
             }
-            .timeline-item        { margin-bottom: 6px !important; }
+            .timeline-item        { margin-bottom: 5px !important; }
             .project-item         { margin-bottom: 5px !important; }
             .formation-item       { margin-bottom: 2px !important; }
             .formation-details    { line-height: 1.3; }
+            .tech-tags            { margin-top: 3px; }
+            .formation-simple     { gap: 4px; }
+            /* Rien apres la derniere section : sinon un residu deborde sur une page blanche. */
+            .main-content         { padding-bottom: 4px; }
+            .main-content .section:last-child { margin-bottom: 0; }
+            .formation-item       { padding: 5px 10px; }
+            /* Projets : l'annee passe sur la ligne du titre (une ligne
+               gagnee par projet) pour tenir sur 2 pages. */
+            .project-item         { padding: 5px 10px; }
+            .project-year         { display: inline-block; margin: 0 8px 0 0; }
+            .project-title        { display: inline; }
+            .project-description  { margin-top: 3px; }
             .dot-chart            { margin-top: 8px; }
             .stats-bars           { margin-top: 8px; gap: 7px; }
 
@@ -1445,7 +1458,7 @@
                             <strong>IA &amp; Data Science:</strong> Pandas, NumPy, Machine Learning, ACP / AFC
                         </div>
                         <div class="skill-group">
-                            <strong>Outils &amp; Méthodes:</strong> Git, Vite, Webpack, BullMQ, PyInstaller, Render, Neon, architecture fonctionnelle, UI/UX
+                            <strong>Outils &amp; Méthodes:</strong> Git, Vite, Webpack, BullMQ, PyInstaller, Render, Neon, ManyChat, architecture fonctionnelle, UI/UX
                         </div>
                     </div>
 
@@ -1662,6 +1675,21 @@
                                 <span class="tech-tag">PostgreSQL</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">Render</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-title">Automatisation IA — Chatbot Messenger</div>
+                            <div class="timeline-company">ManyChat — Automatisation du service client</div>
+                            <div class="timeline-description">
+                                Réponses IA 24 h/24 sur Messenger, relais vers l'équipe.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">ManyChat</span>
+                                <span class="tech-tag">Messenger</span>
+                                <span class="tech-tag">Agent IA</span>
+                                <span class="tech-tag">Automatisation</span>
                             </div>
                         </div>
 
