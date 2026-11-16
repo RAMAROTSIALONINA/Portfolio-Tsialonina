@@ -507,8 +507,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const demarrerAuto = () => {
                 arreterAuto();
                 /* Pas d'animation imposee si l'utilisateur n'en veut pas,
-                   et rien a faire s'il n'y a qu'une seule page. */
-                if (animationsReduites.matches || nbPages() <= 1) return;
+                   ni tant que le bloc est masque, et rien a faire s'il
+                   n'y a qu'une seule page. */
+                if (animationsReduites.matches || !piste.clientWidth || nbPages() <= 1) return;
                 minuteurAuto = setInterval(() => {
                     /* La derniere page vise une position que le navigateur
                        ramene au maximum defilable : sans ce test de fin, le
@@ -529,6 +530,9 @@ document.addEventListener('DOMContentLoaded', function () {
             animationsReduites.addEventListener('change', demarrerAuto);
 
             const construireDots = () => {
+                /* Section masquee (largeur nulle) : les pages ne se calculent
+                   pas encore, on attend son affichage (voir plus bas). */
+                if (!piste.clientWidth) { dots.innerHTML = ''; return; }
                 const n = nbPages();
                 dots.innerHTML = '';
                 dots.hidden = n <= 1;
@@ -570,13 +574,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 demarrerAuto();
             });
 
-            let minuteurResize;
-            window.addEventListener('resize', () => {
-                clearTimeout(minuteurResize);
-                minuteurResize = setTimeout(() => {
-                    construireDots(); majDot(); demarrerAuto();
-                }, 150);
-            });
+            /* Les pages se recalculent des que la piste change de largeur :
+               fenetre redimensionnee, mais aussi section affichee apres le
+               chargement (sa largeur etait nulle jusque-la). */
+            const recalculer = () => { construireDots(); majDot(); demarrerAuto(); };
+            if (window.ResizeObserver) {
+                let largeur = piste.clientWidth;
+                new ResizeObserver(() => {
+                    if (piste.clientWidth === largeur) return;
+                    largeur = piste.clientWidth;
+                    recalculer();
+                }).observe(piste);
+            } else {
+                let minuteurResize;
+                window.addEventListener('resize', () => {
+                    clearTimeout(minuteurResize);
+                    minuteurResize = setTimeout(recalculer, 150);
+                });
+            }
 
             /* Glisser-deposer a la souris (le tactile defile nativement) */
             let actif = false, departX = 0, departScroll = 0;
