@@ -166,6 +166,35 @@ const portfolioData = {
                 { categorie: "Scaling",       items: "Architecture concue des le MVP pour l'expansion nationale puis africaine et internationale" }
             ],
             details: "ACTIPASS est une infrastructure nationale de confiance dediee a la digitalisation, la verification, la certification et la securisation des informations academiques, administratives et professionnelles. Elle repond a la multiplication des fraudes documentaires par un systeme centralise et fiable, selon un modele a double entree B2C (professionnels, etudiants) et B2B/B2G (entreprises, banques, ambassades, institutions). En tant que CTO, responsable de la direction technique et de la conception : definition de la vision technique, documentation fonctionnelle et technique (MOA, MVP, cahier des charges), maquettes UI/UX, diagrammes de flux et architecture fonctionnelle, et participation aux choix techniques et aux orientations technologiques. Le developpement de la plateforme a ete realise par l'equipe Pulse et l'hebergement est assure par Stellarix."
+        },
+        {
+            id: "projet-11",
+            titre: "Gestion des Materiels — Parc, stocks & tracabilite",
+            annee: "2026", role: "Fullstack", statut: "developpement",
+            image: "images/gestion-materiels.webp",
+            description: "Application web de suivi du parc de materiels et des stocks d'articles d'une societe : mouvements, transferts entre sites, remises aux employes, etats et reparations, avec etiquettes code-barres, tableau de bord et rapports PDF / CSV.",
+            technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "HTML5", "CSS3", "Neon", "Render"],
+            stack: [
+                { couche: "Backend",         techno: "Node.js + Express 5",          usage: "API REST et regles metier" },
+                { couche: "Base de donnees", techno: "PostgreSQL (Neon)",            usage: "22 tables, 11 vues, regles garanties par la base" },
+                { couche: "Frontend",        techno: "HTML / CSS / JavaScript",      usage: "Interface sans framework, adaptee tablette et mobile" },
+                { couche: "Securite",        techno: "Sessions en base + argon2id",  usage: "Roles et droits verifies cote serveur, tentatives limitees" },
+                { couche: "Code-barres",     techno: "JsBarcode + lecteur Code 128", usage: "Etiquettes imprimables et scan a la camera" },
+                { couche: "Exports",         techno: "PDFKit + CSV",                 usage: "Rapports filtrables en PDF et en Excel" },
+                { couche: "Tests",           techno: "node:test",                    usage: "Plus de 100 tests de l'API et controles SQL des regles" },
+                { couche: "Hebergement",     techno: "Render + Neon + GitHub",       usage: "Deploiement continu depuis le depot" }
+            ],
+            fonctionnalites: [
+                { categorie: "Materiels",    items: "Fiche a l'unite avec code unique MAT-AAAA-NNNN, categories, sites, services et historique complet de chaque bien" },
+                { categorie: "Code-barres",  items: "Etiquettes imprimables en planche A4, scan a la camera du telephone ou a la douchette" },
+                { categorie: "Stocks",       items: "Articles consommables, seuils global et par site, alertes de stock sous le seuil et de rupture" },
+                { categorie: "Mouvements",   items: "Entrees, sorties, transferts entre sites, pertes et casses ; correction d'inventaire autorisee par une autre personne ; annulation par mouvement inverse, rien n'est supprime" },
+                { categorie: "Affectations", items: "Remises aux employes sous contrat, retards signales, retour selon l'etat constate et prolongation" },
+                { categorie: "Etats",        items: "Envoi en reparation, historique des etats, signalements de panne ou de perte par les employes" },
+                { categorie: "Pilotage",     items: "Tableau de bord en graphiques, ecran d'alertes et 7 rapports filtrables exportables en PDF et en CSV" },
+                { categorie: "Securite",     items: "4 roles (administrateur, gestionnaire, responsable de service, employe), droits verifies cote serveur et journal des operations" }
+            ],
+            details: "Gestion des Materiels est une application web qui suit le parc de materiels (suivis a l'unite) et les stocks d'articles (consommables) d'une societe, avec gestion de plusieurs sites : entrees, sorties, transferts, remises aux employes, etats, reparations et pertes. Chaque bien porte un code unique imprime sur une etiquette code-barres que l'on scanne avec la camera d'un telephone. Les regles metier sont garanties par la base PostgreSQL elle-meme (code unique, sortie limitee au stock disponible, transactions) : un mouvement valide n'est jamais supprime, il s'annule par un mouvement inverse, et toute operation sensible est inscrite au journal. L'API Node.js / Express 5 gere l'authentification par sessions stockees en base, le hachage argon2id et quatre roles dont les droits sont verifies cote serveur. L'interface, en HTML / CSS / JavaScript natif sans framework, propose un tableau de bord en graphiques et des rapports filtrables exportables en PDF (PDFKit) et en CSV. L'application est couverte par plus de 100 tests automatises et deployee sur Render, avec une base PostgreSQL hebergee sur Neon."
         }
     ],
     competences: [
@@ -204,9 +233,10 @@ const portfolioData = {
             titre: "Outils & Divers",
             details: [
                 { label: "Competences",    value: "Calcul Stochastique (R), Operateur de saisie, Conception graphique (Photoshop), OCR, Maintenance informatique" },
-                { label: "Build & Outils", value: "Vite, BullMQ" }
+                { label: "Build & Outils", value: "Vite, BullMQ" },
+                { label: "Hebergement",    value: "Render, Neon, GitHub Pages" }
             ],
-            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ"]
+            tags: ["Calcul Stochastique (R)", "Photoshop", "OCR", "Maintenance informatique", "Vite", "BullMQ", "Render", "Neon"]
         }
     ],
     experiences: [
@@ -326,6 +356,24 @@ const portfolioData = {
                 "Double export PDF : fiche direction avec les couts, fiche cuisine sans donnees sensibles",
                 "Import des anciennes fiches Excel et interface SPA en JavaScript sans framework",
                 "Distribution sous forme d'installateur Windows autonome (PyInstaller + Inno Setup)"
+            ]
+        },
+        {
+            id: "exp-8",
+            poste: "Developpeur Fullstack — Gestion des materiels",
+            entreprise: "Gestion des materiels et des articles",
+            periode: "2026",
+            type: "Projet professionnel",
+            lieu: "Antananarivo, Madagascar",
+            description: "Conception et developpement d'une application web de suivi du parc de materiels et des stocks : mouvements, affectations aux employes, etats et reparations, etiquettes code-barres, tableau de bord et rapports PDF / CSV.",
+            technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "Render"],
+            accomplissements: [
+                "Conception de la base PostgreSQL (22 tables, 11 vues) dont les regles metier sont garanties par la base elle-meme",
+                "API REST Node.js / Express 5 : authentification par sessions, 4 roles et droits verifies cote serveur",
+                "Tracabilite complete : un mouvement valide n'est jamais supprime, il s'annule par un mouvement inverse ; journal des operations",
+                "Etiquettes code-barres imprimables et scan a la camera avec un lecteur Code 128 ecrit en JavaScript",
+                "Tableau de bord en graphiques et rapports filtrables exportes en PDF (PDFKit) et en CSV",
+                "Plus de 100 tests automatises ; deploiement continu sur Render avec une base Neon"
             ]
         }
     ],

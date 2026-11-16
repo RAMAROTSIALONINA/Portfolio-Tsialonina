@@ -261,6 +261,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'OCR':                      'fas fa-file-lines',
         'Maintenance informatique': 'fas fa-screwdriver-wrench',
         'BullMQ':                   'fas fa-list-check',
+        'Render':                   'fas fa-cloud-arrow-up',
+        'Neon':                     'fas fa-bolt',
     };
 
     const skillIcons = {
