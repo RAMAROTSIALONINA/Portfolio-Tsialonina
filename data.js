@@ -124,7 +124,7 @@ const portfolioData = {
         {
             id: "projet-10",
             titre: "Fiche Technique BOGOTA — Gestion de recettes & couts",
-            annee: "2026", role: "Fullstack", statut: "production",
+            annee: "2026", role: "Fullstack", statut: "termine",
             image: "images/fiche-technique.webp",
             description: "Logiciel de gestion des fiches techniques de cuisine pour le restaurant BOGOTA : calcul automatique des couts de revient, recalcul en cascade des prix et suivi de la rentabilite de chaque recette. Application locale, utilisable sans connexion internet.",
             technologies: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "JavaScript", "PyMuPDF", "openpyxl", "PyInstaller"],
