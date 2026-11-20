@@ -146,7 +146,8 @@ const portfolioData = {
                 { categorie: "Documents",    items: "Export PDF en deux versions : fiche admin avec les couts, fiche cuisine sans aucun prix" },
                 { categorie: "Import",       items: "Reprise des anciennes fiches Excel, meme lorsque la mise en page differe" },
                 { categorie: "Securite",     items: "Donnees sensibles (couts, marges) reservees aux comptes administrateurs" },
-                { categorie: "Deploiement",  items: "Fonctionnement 100% local sans internet, livre sous forme d'installateur Windows" }
+                { categorie: "Deploiement",  items: "Fonctionnement 100% local sans internet, livre sous forme d'installateur Windows" },
+                { categorie: "Documentation", items: "Guide d'utilisation de 18 pages et presentation du logiciel, livres avec l'application" }
             ],
             details: "Fiche Technique BOGOTA est un logiciel metier concu pour la cuisine d'un restaurant : il centralise les fiches techniques des recettes et automatise entierement le calcul des couts. Avant, chaque changement de prix fournisseur imposait de recalculer manuellement toutes les recettes concernees ; desormais une seule modification au catalogue se propage automatiquement. Chaque recette est classee selon sa rentabilite (rentable, alerte ou perte) et s'exporte en PDF en deux versions : une fiche complete pour la direction avec les couts et les marges, et une fiche pour la cuisine sans aucun chiffre sensible. L'architecture repose sur un backend FastAPI (Python) avec SQLAlchemy et SQLite, une interface SPA en JavaScript sans framework, l'export PDF via PyMuPDF et l'import Excel via openpyxl. L'application fonctionne en local sans connexion internet et est distribuee sous forme d'installateur Windows genere avec PyInstaller et Inno Setup."
         },
@@ -196,6 +197,35 @@ const portfolioData = {
                 { categorie: "Securite",     items: "4 roles (administrateur, gestionnaire, responsable de service, employe), droits verifies cote serveur et journal des operations" }
             ],
             details: "Gestion des Materiels est une application web qui suit le parc de materiels (suivis a l'unite) et les stocks d'articles (consommables) d'une societe, avec gestion de plusieurs sites : entrees, sorties, transferts, remises aux employes, etats, reparations et pertes. Chaque bien porte un code unique imprime sur une etiquette code-barres que l'on scanne avec la camera d'un telephone. Les regles metier sont garanties par la base PostgreSQL elle-meme (code unique, sortie limitee au stock disponible, transactions) : un mouvement valide n'est jamais supprime, il s'annule par un mouvement inverse, et toute operation sensible est inscrite au journal. L'API Node.js / Express 5 gere l'authentification par sessions stockees en base, le hachage argon2id et quatre roles dont les droits sont verifies cote serveur. L'interface, en HTML / CSS / JavaScript natif sans framework, propose un tableau de bord en graphiques et des rapports filtrables exportables en PDF (PDFKit) et en CSV. L'application est couverte par plus de 100 tests automatises et deployee sur Render, avec une base PostgreSQL hebergee sur Neon."
+        },
+        {
+            id: "projet-12",
+            titre: "SANOVIA — Gestion de cabinet medical",
+            annee: "2026", role: "Fullstack", statut: "developpement",
+            image: "images/sanovia.webp",
+            description: "Logiciel de gestion d'un cabinet de medecine generale : parcours du patient (accueil, infirmerie, consultation, caisse), ordonnances, factures, stock de medicaments, avec un site public et la prise de rendez-vous en ligne. Aide au diagnostic sans IA.",
+            technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "HTML5", "CSS3", "Neon", "Render"],
+            stack: [
+                { couche: "Backend",            techno: "Node.js + Express 5",         usage: "API REST, droits verifies cote serveur" },
+                { couche: "Base de donnees",    techno: "PostgreSQL (Neon)",           usage: "Fiches versionnees, historique et journal impossibles a modifier" },
+                { couche: "Frontend",           techno: "HTML / CSS / JavaScript",     usage: "Logiciel du cabinet et site public, sans framework" },
+                { couche: "Securite",           techno: "Sessions en base + argon2id", usage: "5 profils, blocage apres 5 echecs, deconnexion apres 4 h d'inactivite" },
+                { couche: "Donnees",            techno: "Enregistrement par fiche",    usage: "Conflits entre postes detectes, reprise apres coupure du reseau" },
+                { couche: "Aide a la decision", techno: "Base de 55 pathologies",      usage: "Assistant sans IA : signes ponderes, gravite, allergies" },
+                { couche: "Tests",              techno: "node:test",                   usage: "Plus de 70 tests de l'API" },
+                { couche: "Hebergement",        techno: "Render + Neon + GitHub",      usage: "Serveur sur Render depuis GitHub, base PostgreSQL sur Neon" }
+            ],
+            fonctionnalites: [
+                { categorie: "Parcours patient",    items: "Accueil, infirmerie (constantes et note), consultation puis caisse, autour d'une salle d'attente partagee entre les postes" },
+                { categorie: "Triage des urgences", items: "Questionnaire guide a l'inscription : signes d'urgence, motif, questions oui/non, puis niveau Urgent, Prioritaire ou Non urgent qui classe la salle d'attente" },
+                { categorie: "Consultation",        items: "Diagnostic, IMC avec echelle coloree, ordonnances, recommandations et orientations, documents imprimables" },
+                { categorie: "Ordonnances",         items: "Controle des allergies du dossier par nom et par famille de medicaments (penicillines, AINS, sulfamides...)" },
+                { categorie: "Aide a la decision",  items: "Assistant sans IA : base de 55 pathologies courantes a Madagascar, signes ponderes, alertes de gravite, a valider par les medecins" },
+                { categorie: "Facturation",         items: "Factures, paiements et caisse ; medicaments de l'ordonnance en stock proposes a la facturation" },
+                { categorie: "Site public",         items: "Presentation du cabinet, prise de rendez-vous en ligne par creneaux de 30 minutes, photos et videos administrables" },
+                { categorie: "Securite",            items: "Droits verifies par le serveur selon le profil, historique complet des versions, rien ne s'efface" }
+            ],
+            details: "SANOVIA gere un cabinet de medecine generale de bout en bout : accueil des patients, soins infirmiers, consultation, ordonnances, facturation, caisse, stock de medicaments et rendez-vous. Le projet est parti d'un prototype autonome dont les donnees vivaient dans le navigateur ; il est devenu une application serveur Node.js / Express 5 reliee a une base PostgreSQL (Neon), avec des comptes personnels (argon2id), cinq profils dont les droits sont verifies par le serveur a chaque lecture et chaque ecriture, et un journal que personne ne peut modifier. Chaque fiche est enregistree separement avec son numero de version : si deux postes modifient la meme fiche, le second est prevenu et rien n'est ecrase. Le parcours du patient suit le cabinet reel (accueil, infirmerie, medecin, caisse) autour d'une salle d'attente triee par urgence grace a un questionnaire guide. L'Assistant SANOVIA aide le medecin sans intelligence artificielle : il compare les signes du patient a une base de 55 pathologies ponderees, signale les urgences et surveille les allergies, le tout a faire valider par les medecins. Le public dispose d'un site vitrine avec prise de rendez-vous en ligne, photos et videos. L'application est couverte par plus de 70 tests automatises."
         }
     ],
     competences: [
@@ -393,6 +423,24 @@ const portfolioData = {
                 "Etiquettes code-barres imprimables et scan a la camera avec un lecteur Code 128 ecrit en JavaScript",
                 "Tableau de bord en graphiques et rapports filtrables exportes en PDF (PDFKit) et en CSV",
                 "Plus de 100 tests automatises ; deploiement continu sur Render avec une base Neon"
+            ]
+        },
+        {
+            id: "exp-10",
+            poste: "Developpeur Fullstack — SANOVIA",
+            entreprise: "SANOVIA — Cabinet medical",
+            periode: "2026",
+            type: "Projet professionnel",
+            lieu: "Antananarivo, Madagascar",
+            description: "Conception et developpement d'un logiciel de gestion de cabinet de medecine generale, avec site public et prise de rendez-vous en ligne, a partir d'un prototype autonome devenu application serveur.",
+            technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "Neon"],
+            accomplissements: [
+                "Passage d'un prototype stocke dans le navigateur a une application serveur : base PostgreSQL partagee, comptes personnels et droits verifies par le serveur",
+                "Parcours du patient en equipe (accueil, infirmerie, medecin, caisse) autour d'une salle d'attente partagee et triee par urgence",
+                "Enregistrement fiche par fiche avec detection des conflits entre postes et historique complet des versions",
+                "Assistant d'aide a la decision sans IA : base de 55 pathologies, signes ponderes, alertes de gravite et vigilance sur les allergies",
+                "Site public du cabinet avec prise de rendez-vous en ligne, photos et videos administrables",
+                "Plus de 70 tests automatises ; deploiement sur Render avec une base Neon"
             ]
         }
     ],
