@@ -1353,6 +1353,10 @@
             .project-year         { display: inline-block; margin: 0 8px 0 0; }
             .project-title        { display: inline; }
             .project-description  { margin-top: 3px; }
+            /* Chronologie : la date passe a droite, sur la ligne du titre
+               (une ligne gagnee par experience, 10 experiences). */
+            .timeline-date        { float: right; margin: 3px 0 0 10px; }
+            .timeline-item::before { top: 16px; }
             .dot-chart            { margin-top: 8px; }
             .stats-bars           { margin-top: 8px; gap: 7px; }
 
@@ -1659,6 +1663,22 @@
                                 <span class="tech-tag">UI/UX</span>
                                 <span class="tech-tag">Architecture</span>
                                 <span class="tech-tag">MOA / MVP</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2026</div>
+                            <div class="timeline-title">Développeur Fullstack</div>
+                            <div class="timeline-company">SANOVIA — Cabinet médical</div>
+                            <div class="timeline-description">
+                                Logiciel de cabinet médical et rendez-vous en ligne.
+                            </div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Neon</span>
                             </div>
                         </div>
 
