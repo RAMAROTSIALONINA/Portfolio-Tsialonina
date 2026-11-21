@@ -45,7 +45,7 @@ const portfolioData = {
             titre: "Plateforme TELEX — Television Etudiante",
             annee: "2025", role: "Fullstack", statut: "en-ligne",
             image: "images/telex.webp",
-            url: "http://telex.mg/",
+            url: "https://telex.mg/",
             description: "Plateforme web complete pour une television etudiante realisee en 2025 : gestion de programmes TV, module spirituel Baume de la Foi, interface multilingue FR/EN, systeme admin avec roles, upload medias et conformite RGPD.",
             technologies: ["Node.js", "Express.js", "EJS", "SQLite3", "Bootstrap 5", "JavaScript", "Multer", "JWT"],
             stack: [
@@ -173,7 +173,7 @@ const portfolioData = {
             titre: "Gestion des Materiels — Parc, stocks & tracabilite",
             annee: "2026", role: "Fullstack", statut: "en-ligne",
             image: "images/gestion-materiels.webp",
-            url: "https://gestion-materiels.onrender.com/",
+            url: "https://zedhs.com/",
             description: "Application web de suivi du parc de materiels et des stocks d'articles d'une societe : mouvements, transferts entre sites, remises aux employes, etats et reparations, avec etiquettes code-barres, tableau de bord et rapports PDF / CSV.",
             technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "HTML5", "CSS3", "Neon", "Render"],
             stack: [
@@ -201,8 +201,9 @@ const portfolioData = {
         {
             id: "projet-12",
             titre: "SANOVIA — Gestion de cabinet medical",
-            annee: "2026", role: "Fullstack", statut: "developpement",
+            annee: "2026", role: "Fullstack", statut: "en-ligne",
             image: "images/sanovia.webp",
+            url: "https://sanovia.mg/",
             description: "Logiciel de gestion d'un cabinet de medecine generale : parcours du patient (accueil, infirmerie, consultation, caisse), ordonnances, factures, stock de medicaments, avec un site public et la prise de rendez-vous en ligne. Aide au diagnostic sans IA.",
             technologies: ["Node.js", "Express.js", "PostgreSQL", "JavaScript", "HTML5", "CSS3", "Neon", "Render"],
             stack: [
